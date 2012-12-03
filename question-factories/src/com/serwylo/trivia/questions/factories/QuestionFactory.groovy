@@ -15,8 +15,9 @@ abstract class QuestionFactory {
 	static List<QuestionFactory> getFactories() {
 
 		return [
-			new FictitiousSettingsFactory(),
-			new WhichCameFirstFactory(),
+			new WhoAmIFactory(),
+			// new FictitiousSettingsFactory(),
+			// new WhichCameFirstFactory(),
 		]
 
 	}
