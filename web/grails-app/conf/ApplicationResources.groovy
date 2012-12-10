@@ -1,5 +1,21 @@
 modules = {
-    application {
-        resource url:'js/application.js'
-    }
+
+	klass {
+
+		resource( url: 'js/lib/klass/klass.min.js' )
+
+	}
+
+	question {
+
+		dependsOn( [ "klass" ] )
+
+	}
+
+	questionList {
+
+		dependsOn( [ "question" ] )
+
+	}
+
 }

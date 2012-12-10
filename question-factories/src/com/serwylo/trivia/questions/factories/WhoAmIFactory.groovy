@@ -51,38 +51,32 @@ class WhoAmIFactory extends QuestionFactory {
 
 		String person = lineValues[ HEADER_PERSON ]
 		String famousFor = lineValues[ HEADER_FAMOUS_FOR ]
-		String dob = lineValues[ HEADER_DOB ]
-		String pob = lineValues[ HEADER_POB ]
-		String clue1 = lineValues[ HEADER_CLUE_1 ]
-		String clue2 = lineValues[ HEADER_CLUE_2 ]
-		String clue3 = lineValues[ HEADER_CLUE_3 ]
-		String clue4 = lineValues[ HEADER_CLUE_4 ]
-		String clue5 = lineValues[ HEADER_CLUE_5 ]
-		String clue6 = lineValues[ HEADER_CLUE_6 ]
-		String clue7 = lineValues[ HEADER_CLUE_7 ]
-		String clue8 = lineValues[ HEADER_CLUE_8 ]
+
+		List<String> clueKeys = [
+		   HEADER_CLUE_1,
+		   HEADER_CLUE_2,
+		   HEADER_CLUE_3,
+		   HEADER_CLUE_4,
+		   HEADER_CLUE_5,
+		   HEADER_CLUE_6,
+		   HEADER_CLUE_7,
+		   HEADER_CLUE_8,
+		]
+
+		List<String> clues = [ "I was born on ${lineValues[ HEADER_DOB ]} ${lineValues[ HEADER_POB ]}." ]
+
+		for ( String key in clueKeys ) {
+			if ( lineValues.containsKey( key ) ) {
+				clues.add( lineValues[ key ] )
+			}
+		}
+
+		clues.add( "My first name begins with ${person[0].toUpperCase()}" )
 
 		questions.add(
 			new Question(
-				question:
-"""Who Am I?
-I was born on $dob $pob.
-
-$clue1
-
-$clue2
-
-$clue3
-
-$clue4
-
-$clue5
-
-My first name begins with ${person[0].toUpperCase(
-
-)}""",
-
-				answer: person
+				question: "Who Am I?\n\n" + clues.join( "\n\n" ),
+				answer: person + ( famousFor ? "($famousFor)" : "" ),
 			)
 		)
 

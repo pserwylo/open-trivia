@@ -39,7 +39,7 @@ class FictitiousSettingsFactory extends QuestionFactory {
 				new Question(
 					question: "What TV show is set in $place?",
 					answer: source
-				)
+				).md5( getName(), place + source )
 			)
 		}
 
@@ -47,7 +47,7 @@ class FictitiousSettingsFactory extends QuestionFactory {
 			new Question(
 				question: "Where is $source set?",
 				answer: place
-			)
+			).md5( getName(), source + place )
 		)
 
 		return questions

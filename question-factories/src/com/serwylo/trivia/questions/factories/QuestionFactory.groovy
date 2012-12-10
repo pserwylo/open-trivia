@@ -15,9 +15,10 @@ abstract class QuestionFactory {
 	static List<QuestionFactory> getFactories() {
 
 		return [
+			new CapitalCitiesFactory(),
+			new FictitiousSettingsFactory(),
+			new WhichCameFirstFactory(),
 			new WhoAmIFactory(),
-			// new FictitiousSettingsFactory(),
-			// new WhichCameFirstFactory(),
 		]
 
 	}
@@ -67,6 +68,7 @@ abstract class QuestionFactory {
 	List<Question> getQuestions() {
 
 		List<Question> questions = []
+		Map<String,Question> hashes = [:]
 
 		File file = getFile()
 
@@ -77,11 +79,27 @@ abstract class QuestionFactory {
 				Map<String,String> values = parseLine( line )
 				if ( values ) {
 
-					questions.addAll( parseQuestions( values ) )
+					List<Question> result = parseQuestions( values )
+
+					result.each {
+
+						if ( !it.hash ) {
+							it.md5( getName() )
+						}
+
+						if ( !hashes.containsKey( it.hash ) ) {
+							hashes.put( it.hash, it )
+						} else {
+							throw new Exception( "Hash collision for question factory '" + getName() + "'." )
+						}
+
+						questions.add( it )
+					}
 
 				}
 
 			}
+
 		}
 
 		return questions

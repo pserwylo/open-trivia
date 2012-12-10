@@ -1,10 +1,8 @@
 package com.serwylo.trivia
 
 /**
- * Questions belong to genres (one or more).
- * Categories can be nested inside other genres.
- * I would've liked to to use the term "Category", but it is in use as a groovy.lang class, which makes it a bit
- * inconvenient to have to import everywhere.
+ * Each Question has one or more subjects (aka categories/genres/etc).
+ * Subjects can be nested inside other genres.
  */
 class Subject {
 
@@ -13,9 +11,11 @@ class Subject {
 		description( nullable: true )
 	}
 
+	static hasMany = [ children: Subject ]
+
 	String name
-	String description = null
-	Subject parent = null
+	String description
+	Subject parent
 
 	String toString() {
 		return name
