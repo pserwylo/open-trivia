@@ -6,7 +6,7 @@ package com.serwylo.trivia
  * I would've liked to to use the term "Category", but it is in use as a groovy.lang class, which makes it a bit
  * inconvenient to have to import everywhere.
  */
-class Genre {
+class Subject {
 
 	static constraints = {
 		parent( nullable: true )
@@ -15,7 +15,7 @@ class Genre {
 
 	String name
 	String description = null
-	Genre parent = null
+	Subject parent = null
 
 	String toString() {
 		return name
