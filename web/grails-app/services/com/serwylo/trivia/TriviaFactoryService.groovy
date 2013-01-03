@@ -1,12 +1,23 @@
 package com.serwylo.trivia
 
+import org.grails.datastore.mapping.query.api.Criteria
+
 class TriviaFactoryService {
 
 	def questionService
 
-    TriviaNight createTriviaNight( String type = null ) {
+    TriviaNight createRandomTriviaNight( int rounds = 3 ) {
 
-		
+		TriviaNight night = new TriviaNight()
+		for ( int i in 1..rounds ) {
+
+			TriviaRoundFactory factory = TriviaRoundFactory.getRandomFactory()
+			factory.allowNsfw = false
+			night.rounds.add( factory.createRound() )
+
+		}
+
+		return night
 
     }
 }
@@ -14,11 +25,20 @@ class TriviaFactoryService {
 
 abstract class TriviaRoundFactory<T extends TriviaRound> {
 
-	private static final FACTORIES = [
-		(QUESTION_ROUND): new QuestionRoundFactory(),
-		(QUESTION_AND_CHALLENGE_ROUND): new QuestionAndChallengeRoundFactory(),
-		(SUBJECT_ROUND): new SubjectRoundFactory(),
-	]
+	public static TriviaRoundFactory getRandomFactory()
+	{
+
+		def factories = [
+			new QuestionRoundFactory(),
+			new QuestionAndChallengeRoundFactory(),
+			new SubjectRoundFactory(),
+		]
+
+		int index = (int)( Math.random() * ( factories.size() - 1 ) )
+
+		return factories[ index ]
+
+	}
 
 	/**
 	 * If you want to have the option to include questions which are not safe for work/children/churches/etc, then set
@@ -33,7 +53,7 @@ abstract class TriviaRoundFactory<T extends TriviaRound> {
 	 * We want to prevent people from getting questions repeated in the same trivia night, but also across subsequent
 	 * trivia nights.
 	 */
-	List<Question> questionsToExclude
+	List<Question> questionsToExclude = []
 
 }
 
@@ -50,10 +70,34 @@ class QuestionRoundFactory extends TriviaRoundFactory<QuestionRound> {
 	
 	}
 
+	/**
+	 * Returns 10 questions of any type, as long as they are not in questionsToExclude.
+	 * @return
+	 */
 	protected List<Question> generateQuestions() {
-	
-		return []
-	
+
+		List<Question> questions = []
+
+		for ( int i in 0..9 ) {
+
+			List<Question> q = Question.executeQuery(
+				"from Question as q where q.hash not in :illegalHashes  order by rand()",
+				[ illegalHashes: questionsToExclude*.hash ?: [ 'abc' ] ],
+				[ max: 1 ]
+			)
+
+			assert q.size() == 1
+
+			Question question = q.pop()
+
+			questions.add( question )
+			questionsToExclude.add( question )
+			questionsToExclude.addAll( question.mutuallyExclusiveQuestions )
+
+		}
+
+		return questions
+
 	}
 
 }
@@ -66,6 +110,7 @@ class QuestionAndChallengeRoundFactory extends QuestionRoundFactory {
 		QuestionAndChallengeRound round = new QuestionAndChallengeRound()
 
 		round.questions = generateQuestions()
+		round.challenge = null
 
 		return round
 
@@ -88,7 +133,15 @@ class SubjectRoundFactory extends QuestionRoundFactory {
 
 	List<Question> generateSubjectQuestions() {
 
-		return []
+		return generateQuestions()
+		/*Criteria c = Question.createCriteria()
+		return c {
+			not {
+				inList( "questionsToExclude" )
+			}
+			inList( "subjects" )
+			maxResults( 10 )
+		}*/
 
 	}
 

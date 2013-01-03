@@ -1,84 +1,114 @@
 package com.serwylo.trivia.questions.factories
 
-import com.serwylo.trivia.questions.Question
-
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+import com.serwylo.trivia.questions.GeneratedQuestion
+import com.serwylo.trivia.questions.factories.whichCameFirst.DistanceCalculator
+import com.serwylo.trivia.questions.factories.whichCameFirst.Event
+import com.serwylo.trivia.questions.WhichCameFirstQuestion
 
 /**
- *
- *
- *
+ * "Which came first, event 1 or event 2?".
+ * This class generates questions that comapre two events, e.g. inventions, tv show start dates,
+ * album release dates, etc.
+ * It will make sure that events are not too close or too far apart, and will assign a higher
+ * difficulty if the events are closer in time (TODO).
  */
 class WhichCameFirstFactory extends BatchQuestionFactory {
 
-	final static HEADER_NAME = "source"
+	final static HEADER_NAME = "name"
 	final static HEADER_DATE = "date"
+	final static HEADER_CATEGORY = "category"
 
-	private Set<String> questionsUsed = []
-
-	protected Question generateQuestion() {
-
-		int index1 = (int)( Math.random() * ( this.getCachedData().size() - 1 ) )
-		int index2 = index1
-
-		while ( index1 == index2 ) {
-			index2 = (int)( Math.random() * ( this.getCachedData().size() - 1 ) )
-		}
-
-		Map<String, String> data1 = this.getCachedData()[ index1 ]
-		Map<String, String> data2 = this.getCachedData()[ index2 ]
-
-		DateFormat format = new SimpleDateFormat( "dd/MM/yyyy" )
-
-		Date date1 = format.parse( data1[ HEADER_DATE ] )
-		Date date2 = format.parse( data2[ HEADER_DATE ] )
-
-		Map<String, String> first  = date1 < date2 ? data1 : data2
-		Map<String, String> second = date1 < date2 ? data2 : data1
-
-		String identifier = first[ HEADER_NAME ] + " -> " + second[ HEADER_NAME ]
-		if ( !questionsUsed.contains( identifier ) )
-		{
-			questionsUsed.add( identifier )
-			return new Question(
-				question: "Which came first, ${data1[ HEADER_NAME]} or ${data2[ HEADER_NAME ]}",
-				answer: "${first[ HEADER_NAME ]} ${first[ HEADER_DATE ]} (vs ${second[ HEADER_NAME ]} ${second[ HEADER_DATE ]})"
-			)
-		}
-		else
-		{
-			return null
-		}
-
-	}
+	private Map<String,List<Event>> eventsBySubject = [:]
 
 	@Override
-	protected List<Question> generateQuestions() {
+	protected List<GeneratedQuestion> generateQuestions() {
 
-		List<Question> questions = []
+		List<WhichCameFirstQuestion> questions = []
 
-		int attempts = 0
-		int i = 0
-		while ( i < 10 && attempts < 100 ) {
+		this.initEvents();
 
-			Question q = generateQuestion()
-			if ( q != null ) {
-				questions.add( q )
-				i ++
-			}
-			attempts ++
+		eventsBySubject.each { entry ->
+
+			questions.addAll( processEvents( entry.value, entry.key ) )
+
+		}
+
+		// It is easier to wait until we've created every single question before figuring out which are
+		// mutually exclusive. May be a bit slower, but oh well...
+		questions.each { question ->
+
+			question.mutuallyExclusive = questions.findAll { question.isMutuallyExclusive( it ) }
+
 		}
 
 		return questions
 
 	}
 
+	/**
+	 * Allows us to take a list of events and compare each to each other (where allowed).
+	 * Currently enforces only comaprisons between the same subjects, but it might be a nice TODO to
+	 * compare some cross-subject questions.
+	 */
+	protected List<WhichCameFirstQuestion> processEvents( List<Event> events, String subject ) {
+
+		List<WhichCameFirstQuestion> questions = []
+
+		// Not a very Groovy way to iterate, but I want to ensure that events from the inner loop are not compared
+		// to events from the outer loop which have already been visited.
+		for ( Integer i = 0; i < events.size(); i ++ ) {
+
+			Event mainEvent = events.get( i )
+			DistanceCalculator calc = new DistanceCalculator( mainEvent )
+
+			for ( Integer j = i + 1; j < events.size(); j ++ ) {
+
+				Event secondaryEvent = events.get( j )
+				if ( calc.accept( secondaryEvent ) )
+				{
+
+					questions.add( new WhichCameFirstQuestion( mainEvent, secondaryEvent ) )
+
+				}
+
+			}
+
+		}
+
+		return questions
+
+	}
+
+	/**
+	 * Iterate through each of the items from the spreadsheet (getCachedData()).
+	 * Each will be turned into an event.
+	 */
+	protected void initEvents() {
+
+		getCachedData().each { data ->
+
+			String name = data[ HEADER_NAME ]
+			String date = data[ HEADER_DATE ]
+			String category = data[ HEADER_CATEGORY ]
+
+			Event event = Event.create( name, date )
+
+			if ( !this.eventsBySubject.containsKey( category ) ) {
+				this.eventsBySubject.put( category, [] )
+			}
+
+			this.eventsBySubject.get( category ).add( event )
+
+		}
+
+	}
+
 	@Override
 	protected List<Header> getAdditionalHeaders() {
 		return [
-			new Header( name:  HEADER_NAME, isRequired: true ),
-			new Header( name:  HEADER_DATE, isRequired: true ),
+			new Header( name: HEADER_NAME, isRequired: true ),
+			new Header( name: HEADER_DATE, isRequired: true ),
+			new Header( name: HEADER_CATEGORY, isRequired: true ),
 		]
 	}
 

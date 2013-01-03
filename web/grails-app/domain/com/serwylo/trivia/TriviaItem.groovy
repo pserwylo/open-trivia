@@ -8,15 +8,13 @@ package com.serwylo.trivia
 abstract class TriviaItem {
 
     static constraints = {
+		// TODO: Change this to false, and implement difficulties...
+		difficulty( nullable: true )
     }
 
 	static mapping = {
 		commentToHost( type: "text" )
 	}
-
-	static hasOne = [
-		difficulty: Difficulty
-	]
 
 	/**
 	 * Some questions may have potential points of dispute, so we put a comment here for the host to help prevent any
@@ -31,5 +29,10 @@ abstract class TriviaItem {
 	 * Defaults to false (i.e. IS safe for work/children/etc).
 	 */
 	Boolean nsfw = false
+
+	/**
+	 * Allows the generators to create trivia nights of varying difficulty.
+	 */
+	Difficulty difficulty
 
 }

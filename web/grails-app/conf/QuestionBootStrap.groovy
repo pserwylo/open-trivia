@@ -1,6 +1,7 @@
 import com.serwylo.trivia.Difficulty
 import com.serwylo.trivia.Question
 import com.serwylo.trivia.Subject
+import com.serwylo.trivia.questions.GeneratedQuestion
 import com.serwylo.trivia.questions.factories.QuestionFactory
 import com.serwylo.trivia.web.DifficultyService
 import grails.util.Environment
@@ -65,8 +66,14 @@ class QuestionBootStrap {
 				parent: entertainment
 			).save( flush: true, failOnError: true )
 
+			Subject movies = new Subject(
+				name: "Movies",
+				description: "",
+				parent: entertainment
+			).save( flush: true, failOnError: true )
 
-			entertainment.children = [ music, tv ]
+
+			entertainment.children = [ music, tv, movies ]
 			entertainment.save( flush: true, failOnError: true )
 
 		}
@@ -75,19 +82,36 @@ class QuestionBootStrap {
 
 	void initQuestionsFromFactories() {
 
-		QuestionFactory.factories.each {
+		List<Question> allSavedQuestions = []
+		List<GeneratedQuestion> allGeneratedQuestions = []
 
-			List<com.serwylo.trivia.questions.Question> questions = it.getQuestions()
+		QuestionFactory.factories.each { factory ->
 
-			questions.each { qIt ->
+			List<GeneratedQuestion> questions = factory.getQuestions()
+
+			questions.each { question ->
 
 				Question q = new Question(
-					question: qIt.question,
-					answer:  qIt.answer,
-					difficulty: difficultyService.easy
+					question: question.question,
+					answer:  question.answer,
+					difficulty: difficultyService.easy,
+					hash: question.hash
 				).save( failOnError: true )
 
+				allGeneratedQuestions.add( question );
+				allSavedQuestions.add( q )
+
 			}
+
+		}
+
+		allSavedQuestions.each { question ->
+
+			GeneratedQuestion q = allGeneratedQuestions.find { it.hash == question.hash }
+			List<String> mutuallyExclusiveHashes = q.mutuallyExclusive*.hash
+
+			question.mutuallyExclusiveQuestions = allSavedQuestions.findAll { mutuallyExclusiveHashes.contains( it.hash ) }
+			question.save( failOnError: true );
 
 		}
 

@@ -7,9 +7,7 @@ class QuestionAndChallengeRound extends QuestionRound {
     static constraints = {
     }
 
-	static hasOne = [
-		challenge: Challenge
-	]
+	ChallengeItem challenge
 
 	String getTypeName() {
 		return QuestionAndChallengeRound.TYPE

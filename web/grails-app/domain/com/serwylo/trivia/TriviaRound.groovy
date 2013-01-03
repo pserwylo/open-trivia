@@ -8,9 +8,7 @@ abstract class TriviaRound {
     static constraints = {
 	}
 
-	static hasOne = [
-		triviaNight: TriviaNight
-	]
+	TriviaNight triviaNight
 
 	Integer roundNumber
 

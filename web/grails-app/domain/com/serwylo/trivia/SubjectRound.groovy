@@ -11,12 +11,10 @@ class SubjectRound extends QuestionRound {
     static constraints = {
     }
 
-	static hasOne = [
-		subject: Subject
-	]
+	Subject subject
 
 	String getTypeName() {
 		return SubjectRound.TYPE
 	}
-	
+
 }

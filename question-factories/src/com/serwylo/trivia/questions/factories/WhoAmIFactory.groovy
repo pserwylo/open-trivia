@@ -1,6 +1,6 @@
 package com.serwylo.trivia.questions.factories
 
-import com.serwylo.trivia.questions.Question
+import com.serwylo.trivia.questions.GeneratedQuestion
 
 class WhoAmIFactory extends QuestionFactory {
 
@@ -45,9 +45,9 @@ class WhoAmIFactory extends QuestionFactory {
 
 	}
 
-	protected List<Question> parseQuestions( Map<String,String> lineValues ) {
+	protected List<GeneratedQuestion> parseQuestions( Map<String,String> lineValues ) {
 
-		List<Question> questions = []
+		List<GeneratedQuestion> questions = []
 
 		String person = lineValues[ HEADER_PERSON ]
 		String famousFor = lineValues[ HEADER_FAMOUS_FOR ]
@@ -74,7 +74,7 @@ class WhoAmIFactory extends QuestionFactory {
 		clues.add( "My first name begins with ${person[0].toUpperCase()}" )
 
 		questions.add(
-			new Question(
+			new GeneratedQuestion(
 				question: "Who Am I?\n\n" + clues.join( "\n\n" ),
 				answer: person + ( famousFor ? "($famousFor)" : "" ),
 			)

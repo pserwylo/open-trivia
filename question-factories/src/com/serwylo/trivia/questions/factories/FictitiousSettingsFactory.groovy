@@ -1,6 +1,6 @@
 package com.serwylo.trivia.questions.factories
 
-import com.serwylo.trivia.questions.Question
+import com.serwylo.trivia.questions.GeneratedQuestion
 
 class FictitiousSettingsFactory extends QuestionFactory {
 
@@ -27,16 +27,16 @@ class FictitiousSettingsFactory extends QuestionFactory {
 
 	}
 
-	protected List<Question> parseQuestions( Map<String,String> lineValues ) {
+	protected List<GeneratedQuestion> parseQuestions( Map<String,String> lineValues ) {
 
-		List<Question> questions = []
+		List<GeneratedQuestion> questions = []
 
 		String source = lineValues[ HEADER_SOURCE ]
 		String place = lineValues[ HEADER_PLACE ]
 
 		if ( lineValues[ HEADER_CAN_REVERSE ]?.toLowerCase()?.equals( "yes" ) ) {
 			questions.add(
-				new Question(
+				new GeneratedQuestion(
 					question: "What TV show is set in $place?",
 					answer: source
 				).md5( getName(), place + source )
@@ -44,7 +44,7 @@ class FictitiousSettingsFactory extends QuestionFactory {
 		}
 
 		questions.add(
-			new Question(
+			new GeneratedQuestion(
 				question: "Where is $source set?",
 				answer: place
 			).md5( getName(), source + place )

@@ -1,6 +1,6 @@
 package com.serwylo.trivia.questions.factories
 
-import com.serwylo.trivia.questions.Question
+import com.serwylo.trivia.questions.GeneratedQuestion
 
 abstract class QuestionFactory {
 
@@ -15,9 +15,10 @@ abstract class QuestionFactory {
 	static List<QuestionFactory> getFactories() {
 
 		return [
+			new WhichCameFirstFactory(),
+			new MovieQuotesFactory(),
 			new CapitalCitiesFactory(),
 			new FictitiousSettingsFactory(),
-			new WhichCameFirstFactory(),
 			new WhoAmIFactory(),
 		]
 
@@ -54,7 +55,7 @@ abstract class QuestionFactory {
 	 */
 	abstract protected List<Header> getAdditionalHeaders()
 
-	abstract protected List<Question> parseQuestions( Map<String,String> values )
+	abstract protected List<GeneratedQuestion> parseQuestions( Map<String,String> values )
 
 	abstract protected File getFile()
 
@@ -65,10 +66,10 @@ abstract class QuestionFactory {
 	abstract String getName()
 
 
-	List<Question> getQuestions() {
+	List<GeneratedQuestion> getQuestions() {
 
-		List<Question> questions = []
-		Map<String,Question> hashes = [:]
+		List<GeneratedQuestion> questions = []
+		Map<String,GeneratedQuestion> hashes = [:]
 
 		File file = getFile()
 
@@ -79,13 +80,15 @@ abstract class QuestionFactory {
 				Map<String,String> values = parseLine( line )
 				if ( values ) {
 
-					List<Question> result = parseQuestions( values )
+					List<GeneratedQuestion> result = parseQuestions( values )
 
 					result.each {
 
 						if ( !it.hash ) {
 							it.md5( getName() )
 						}
+
+						assert( it.hash != null )
 
 						if ( !hashes.containsKey( it.hash ) ) {
 							hashes.put( it.hash, it )

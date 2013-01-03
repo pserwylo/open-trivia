@@ -1,6 +1,6 @@
 package com.serwylo.trivia.questions.factories
 
-import com.serwylo.trivia.questions.Question
+import com.serwylo.trivia.questions.GeneratedQuestion
 
 /**
  * Some questions are arranged in their data file such that they can only be generated when they know the values of other
@@ -16,16 +16,16 @@ abstract class BatchQuestionFactory extends QuestionFactory {
 	}
 
 	@Override
-	protected List<Question> parseQuestions(Map<String, String> values) {
+	protected List<GeneratedQuestion> parseQuestions(Map<String, String> values) {
 
 		cachedData.add( values )
 		return []
 
 	}
 
-	abstract protected List<Question> generateQuestions()
+	abstract protected List<GeneratedQuestion> generateQuestions()
 
-	public List<Question> getQuestions() {
+	public List<GeneratedQuestion> getQuestions() {
 
 		// Populates the cachedData thing...
 		super.getQuestions()

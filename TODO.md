@@ -1,5 +1,13 @@
 # Question Generation
 
+## Relative paths to data files
+
+Currently I'm just pointing to the full path, but need relative paths to work both for the command line version and the Grails version.
+
+## Which Came First TODO
+
+Investigate whether it makes sense to compare across-subject events, e.g. Jerry Srpinger vs The first Iraq War.
+
 ## Question hash
 
 Each question should have some form of unique identifier that is based on the content it came from. This will allow us to:
@@ -10,6 +18,7 @@ Each question should have some form of unique identifier that is based on the co
 * Rerun the question generation, which will only add new questions
 * Rerun the question generation, without overwritting the question which we modified
 
+Currently, it is purely based on the content, so if we change the content, the hash will change. I would rather this be statically generated, perhaps by the spreadsheet, so that we can change the content and not override the question.
 
 ## Templates
 
@@ -25,6 +34,19 @@ In addition to just templates, it would seem like a good idea to include a few e
 
 By building a community, we are able to build value, in that the questions are no longer just something that you can use to differentiate between somebody else running the software, but you can also have them vetted and ranked to filter out the less good content.
 
+
+## "Incompatible with"
+
+Need to be able to say that, for example, reversed questions, are incompatible with each other. That is, they should not appear in the same trivia session.
+
+This has been implemented for Which Came First, now need to do it for others.
+
+
+## Question difficulty
+
+Ensure all questions have a difficulty (e.g. assert during generation of questions) or perhaps give them a deafult difficulty.
+
+Need to assign this to Which Came First questions depending on how close they are in time (i.e. closer events are harder to distinguish).
 
 # Website
 

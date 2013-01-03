@@ -1,6 +1,6 @@
 package com.serwylo.trivia.questions.factories
 
-import com.serwylo.trivia.questions.Question
+import com.serwylo.trivia.questions.GeneratedQuestion
 
 class CapitalCitiesFactory extends QuestionFactory {
 
@@ -27,27 +27,27 @@ class CapitalCitiesFactory extends QuestionFactory {
 
 	}
 
-	protected List<Question> parseQuestions( Map<String,String> lineValues ) {
+	protected List<GeneratedQuestion> parseQuestions( Map<String,String> lineValues ) {
 
-		List<Question> questions = []
+		List<GeneratedQuestion> questions = []
 
 		String country = lineValues[ HEADER_COUNTRY ]
 		String capital = lineValues[ HEADER_CAPITAL ]
 
-		if ( ! lineValues[ HEADER_CAN_REVERSE ]?.toLowerCase()?.equals( "no" ) ) {
+		if ( lineValues[ HEADER_CAN_REVERSE ]?.toLowerCase()?.equals( "yes" ) ) {
 			questions.add(
-				new Question(
+				new GeneratedQuestion(
 					question: "What country is $capital the capital of?",
 					answer: country
-				).md5( getName(), capital + country )
+				).md5( getName(), "country: " + country + capital )
 			)
 		}
 
 		questions.add(
-			new Question(
+			new GeneratedQuestion(
 				question: "What is the capital of $country?",
 				answer: capital
-			).md5( getName(), country + capital )
+			).md5( getName(), "capital: " + country + capital )
 		)
 
 		return questions

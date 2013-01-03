@@ -5,7 +5,7 @@ package com.serwylo.trivia
  * Unlike a question, a challenge doesn't require an answer. 
  * It is simply a description of something the tables must perform.
  */
-class Challenge extends TriviaItem {
+class ChallengeItem extends TriviaItem {
 
     static constraints = {
     }

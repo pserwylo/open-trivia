@@ -12,12 +12,6 @@ class Difficulty {
 
 	}
 
-	static hasMany = [
-
-		questions: Question
-
-	]
-
 	String label
 
 	Integer value

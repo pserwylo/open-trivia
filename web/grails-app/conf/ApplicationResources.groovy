@@ -18,4 +18,10 @@ modules = {
 
 	}
 
+	answerSheet {
+
+		resource( url: "css/views/answerSheet.css" )
+
+	}
+
 }

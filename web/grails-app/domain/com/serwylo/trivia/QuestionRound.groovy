@@ -17,4 +17,8 @@ class QuestionRound extends TriviaRound {
 		return QuestionRound.TYPE
 	}
 
+	String toString() {
+		return getTypeName() + "\n" + questions
+	}
+
 }
