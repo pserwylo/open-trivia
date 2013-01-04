@@ -36,3 +36,8 @@ ul.questions-list li {
     text-shadow: 2px 2px 2px #ccc;
     color: #333;
 }
+
+.toggle-answers {
+    font-size: 1.2em;
+    margin-left: 1.2em;
+}

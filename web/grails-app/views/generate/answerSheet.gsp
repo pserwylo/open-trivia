@@ -4,6 +4,7 @@
   <title></title>
 	<r:require module="answerSheet" />
 	<r:layoutResources media="print" />
+	<r:layoutResources />
 </head>
 <body>
 

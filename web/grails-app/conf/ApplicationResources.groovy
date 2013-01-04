@@ -1,5 +1,12 @@
 modules = {
 
+	misc {
+
+		resource( url: "css/misc.css" )
+		resource( url: "js/utils.js" )
+
+	}
+
 	klass {
 
 		resource( url: 'js/lib/klass/klass.min.js' )
@@ -20,7 +27,10 @@ modules = {
 
 	answerSheet {
 
+		dependsOn( [ "klass", "misc", "jquery" ] )
+		
 		resource( url: "css/views/answerSheet.css" )
+		resource( url: "js/answerSheet.js" )
 
 	}
 

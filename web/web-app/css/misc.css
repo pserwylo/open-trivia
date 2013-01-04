@@ -1,0 +1,14 @@
+.button {
+    border-radius: 0.3em;
+    padding: 0.3em 0.5em;
+    border: solid 1px #666;
+}
+
+a {
+    color: darkblue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
