@@ -21,32 +21,31 @@ abstract class HostSheet<T> {
 
 	T round
 
-
 	abstract void render( int roundNumber );
 
-	static HostSheet create( T round ) {
+	static HostSheet create( r ) {
 
 		HostSheet output = null
 
-		if ( round instanceof SubjectRound ) {
+		if ( r instanceof SubjectRound ) {
 
 
 
-		} else if ( round instanceof QuestionAndChallengeRound ) {
+		} else if ( r instanceof QuestionAndChallengeRound ) {
 
 			output = new QuestionHostSheet();
 
-		} else if ( round instanceof QuestionRound ) {
+		} else if ( r instanceof QuestionRound ) {
 
 			output = new QuestionHostSheet();
 
 		} else {
 
-			throw new Exception( "Round '" + round.getClass().getCanonicalName() + "' cannot render its host sheet." )
+			throw new Exception( "Round '" + r.getClass().getCanonicalName() + "' cannot render its host sheet." )
 
 		}
 
-		output.round = round
+		output.round = r
 		return output
 
 	}

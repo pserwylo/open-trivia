@@ -19,6 +19,7 @@ class WhichCameFirstFactory extends BatchQuestionFactory {
 	final static HEADER_CATEGORY = "category"
 
 	private Map<String,List<Event>> eventsBySubject = [:]
+	private List<Event> allEvents = []
 
 	@Override
 	protected List<GeneratedQuestion> generateQuestions() {
@@ -27,11 +28,13 @@ class WhichCameFirstFactory extends BatchQuestionFactory {
 
 		this.initEvents();
 
-		eventsBySubject.each { entry ->
+		questions.addAll( processEvents( allEvents, "All categories" ) )
+
+		/*eventsBySubject.each { entry ->
 
 			questions.addAll( processEvents( entry.value, entry.key ) )
 
-		}
+		}*/
 
 		// It is easier to wait until we've created every single question before figuring out which are
 		// mutually exclusive. May be a bit slower, but oh well...
@@ -98,6 +101,7 @@ class WhichCameFirstFactory extends BatchQuestionFactory {
 			}
 
 			this.eventsBySubject.get( category ).add( event )
+			this.allEvents.add( event )
 
 		}
 

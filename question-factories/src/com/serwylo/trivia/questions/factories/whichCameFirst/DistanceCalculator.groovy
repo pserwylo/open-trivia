@@ -30,10 +30,10 @@ class DistanceCalculator {
 
 		this.event = event
 
-		this.intervals.put( 1, 2 );
-		this.intervals.put( 100, 20 );
-		this.intervals.put( 250, 75 );
-		this.intervals.put( 1000, 400 );
+		this.intervals.put( 1, 1 );
+		this.intervals.put( 100, 10 );
+		this.intervals.put( 250, 35 );
+		this.intervals.put( 1000, 200 );
 
 		this.maxYearsAway = this.calcMaxDistance()
 
