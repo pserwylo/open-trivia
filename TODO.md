@@ -62,6 +62,8 @@ Filter based on: subject, factory type? difficulty, etc...
 
 Trivia nights need rounds, which need questions. Somehow, they will need to not use questions from previous nights.
 
+### Show more questions than needed, let them remove excess ones. 
+
 
 ## Users
 
