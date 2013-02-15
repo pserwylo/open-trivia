@@ -8,6 +8,10 @@ class GenerateController {
 
 	TriviaFactoryService triviaFactoryService
 
+	def "new"() {
+		return []
+	}
+
 	def questionSheet() {
 
 		TriviaNight night = triviaFactoryService.createRandomTriviaNight( 3 )
@@ -35,8 +39,6 @@ class GenerateController {
 	}
 
 	def index() {
-
-
 
 	}
 

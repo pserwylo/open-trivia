@@ -10,12 +10,12 @@
 		</title>
 
 		<g:layoutHead/>
-        %{--<r:require module="page" />--}%
+        <r:require module="publicPage" />
 		<r:layoutResources />
 	</head>
 	<body>
 		<div id="header">
-			<ot:navigation />
+			<nav:render group="public" />
 		</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
