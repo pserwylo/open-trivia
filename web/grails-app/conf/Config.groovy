@@ -1,3 +1,5 @@
+import com.serwylo.trivia.auth.Role
+
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
 
@@ -9,6 +11,8 @@
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
+
+grails.config.locations = [ CustomConfig ]
 
 grails.plugin.wkhtmltox.binary = "/usr/bin/wkhtmltopdf"
 
@@ -59,6 +63,8 @@ grails.exceptionresolver.params.exclude = ['password']
 
 // enable query caching by default
 grails.hibernate.cache.queries = true
+// grails.hibernate.cache.use_query_cache = true
+
 
 // set per-environment serverURL stem for creating absolute links
 environments {
@@ -92,3 +98,21 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName    = 'com.serwylo.trivia.auth.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.serwylo.trivia.auth.UserRole'
+grails.plugins.springsecurity.authority.className               = 'com.serwylo.trivia.auth.Role'
+grails.plugins.springsecurity.securityConfigType                = 'InterceptUrlMap'
+
+grails.plugins.sprintsecurity.interceptUrlMap = [
+	'/question/**' : [ Role.ADMIN ],
+	'/user/**'     : [ Role.ADMIN ],
+	'/page/**'     : [ Role.ANONYMOUS ],
+	'/js/**'       : [ Role.ANONYMOUS ],
+	'/css/**'      : [ Role.ANONYMOUS ],
+	'/images/**'   : [ Role.ANONYMOUS ],
+	'/login/**'    : [ Role.ANONYMOUS ],
+	'/logout/**'   : [ Role.ANONYMOUS ],
+	'/*'           : [ Role.ANONYMOUS ],
+]

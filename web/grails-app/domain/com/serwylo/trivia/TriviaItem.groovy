@@ -1,5 +1,7 @@
 package com.serwylo.trivia
 
+import com.serwylo.trivia.auth.User
+
 /**
  * A TriviaItem is something which gets read out to the participants.
  * The most obvious format is a question which requires an answer, but it could also 
@@ -8,8 +10,6 @@ package com.serwylo.trivia
 abstract class TriviaItem {
 
     static constraints = {
-		// TODO: Change this to false, and implement difficulties...
-		difficulty( nullable: true )
     }
 
 	static mapping = {
@@ -34,5 +34,10 @@ abstract class TriviaItem {
 	 * Allows the generators to create trivia nights of varying difficulty.
 	 */
 	Difficulty difficulty
+
+	Date dateCreated
+	Date lastUpdated
+	User createdBy
+	User modifiedBy
 
 }

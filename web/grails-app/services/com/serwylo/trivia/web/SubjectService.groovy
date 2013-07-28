@@ -14,13 +14,4 @@ class SubjectService {
 
 	}
 
-	/**
-	 * Returns a list of subjects, with each element being a tree including its sub-subjects.
-	 * @return
-	 */
-    List<Subject> getSubjectTrees() {
-
-		return Subject.list()
-
-	}
 }

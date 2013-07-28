@@ -15,9 +15,12 @@
 	</head>
 	<body>
 		<div id="header">
-			<nav:render group="public" />
+			<h1>Trivia</h1>
+			%{--<nav:primary scope="publicScope" />--}%
 		</div>
-		<g:layoutBody/>
+		<div id="content">
+			<g:layoutBody/>
+		</div>
 		<div class="footer" role="contentinfo"></div>
         <r:layoutResources />
 	</body>

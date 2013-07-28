@@ -16,6 +16,8 @@ class Subject {
 	String name
 	String description
 	Subject parent
+	Date dateCreated
+	Date lastUpdated
 
 	String toString() {
 		return name

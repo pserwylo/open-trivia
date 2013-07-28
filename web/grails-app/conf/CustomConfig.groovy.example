@@ -1,0 +1,10 @@
+// Copy this file to CustomConfig.groovy, and specify the appropriate properties for database setup before compiling
+
+dataSource {
+	dbCreate        = "update"
+	url             = "jdbc:mysql://localhost/open_trivia"
+	driverClassName = "com.mysql.jdbc.Driver"
+	dialect         = "org.hibernate.dialect.MySQL5InnoDBDialect"
+	username        = "username"
+	password        = "password"
+}

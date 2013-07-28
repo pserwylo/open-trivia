@@ -2,49 +2,50 @@ modules = {
 
 	misc {
 		resource( url: "css/misc.css" )
-		resource( url: "js/utils.js" )
+		resource( url: "css/main.css" )
+		dependsOn( [ "jquery" ] )
 	}
 
 	publicPage {
 		resource( url: "css/public.css" )
+		dependsOn( [ 'misc' ] )
 	}
 
-	klass {
-		resource( url: 'js/lib/klass/klass.min.js' )
+	home {
+		resource( url: "css/home.css" )
+		dependsOn( 'misc' )
 	}
 
-	question {
-		dependsOn( [ "klass" ] )
+	admin {
+		resource( url: "css/admin.css" )
+		dependsOn( [ "misc" ] )
+	}
+
+	adminList {
+		resource( url: "css/adminList.css" )
+		dependsOn( [ "admin" ] )
+	}
+
+	adminForm {
+		resource( url: "css/adminForm.css" )
+		dependsOn( [ "admin" ] )
+	}
+
+	adminQuestionList {
+		resource( url: "css/adminQuestionList.css" )
+		dependsOn( [ "adminList" ] )
 	}
 
 	views {
-		dependsOn( [ "klass", "jquery" ] )
-		resource( url: "js/views/views.js" );
+		dependsOn( [ "jquery" ] )
 	}
 
 	viewsGenerate {
 		dependsOn( [ "views" ] );
-		resource( url: "js/views/generate/generate.js" );
-		resource( url: "js/views/generate/options/options.js" );
-		resource( url: "js/views/generate/options/night.js" );
-		resource( url: "js/views/generate/options/round.js" );
-		resource( url: "js/views/generate/options/subject.js" );
 	}
 
 	questionList {
 		dependsOn( [ "question" ] )
-	}
-
-	answerSheet {
-		dependsOn( [ "klass", "misc", "jquery" ] )
-		resource( url: "css/views/answerSheet.css" )
-		resource( url: "js/views/answerSheet/answerSheet.js" )
-	}
-
-	answerSheet {
-		dependsOn( [ "klass", "misc", "jquery" ] )
-		resource( url: "css/views/generate.css" )
-		resource( url: "js/views/generate/generate.js" )
 	}
 
 }

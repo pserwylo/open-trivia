@@ -1,3 +1,6 @@
+# This file contains usernames and passwords for, e.g. DB, mail servers, etc.
+CustomConfig.groovy
+
 # web application files
 /web-app/WEB-INF
 

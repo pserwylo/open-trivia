@@ -1,0 +1,48 @@
+textarea {
+    width: 300px;
+    border: solid 1px #888;
+}
+
+textarea.errors {
+    box-shadow: #f00 0 0 3px;
+}
+
+textarea.large {
+    height: 100px;
+}
+
+textarea.small {
+    height: 60px;
+}
+
+select {
+    min-width: 120px;
+}
+
+label {
+    display: block;
+}
+
+.input.select {
+    float: left;
+}
+
+.input {
+    margin: 0.3em 0;
+}
+
+.buttons {
+    margin-top: 0.8em;
+    clear: both;
+}
+
+.multi-checkboxes ul {
+    list-style: none;
+    margin: 0 0 0 0.5em;
+    padding: 0;
+}
+
+#content {
+    padding-left: 1em;
+    padding-right: 1em;
+}

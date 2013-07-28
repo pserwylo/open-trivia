@@ -11,23 +11,24 @@ class Difficulty {
 	}
 
 	String label
-
 	Integer value
+	Date dateCreated
+	Date lastUpdated
 
 	String toString() {
 		return label
 	}
 
 	static final Difficulty getEasy() {
-		return Difficulty.findByValue( DIFF_EASY );
+		return findByValue( DIFF_EASY );
 	}
 
 	static final Difficulty getMedium() {
-		return Difficulty.findByValue( DIFF_MEDIUM );
+		return findByValue( DIFF_MEDIUM );
 	}
 
 	static final Difficulty getHard() {
-		return Difficulty.findByValue( DIFF_HARD );
+		return findByValue( DIFF_HARD );
 	}
 
 }

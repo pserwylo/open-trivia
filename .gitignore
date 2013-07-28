@@ -1,4 +1,5 @@
 # IntelliJ Module files
 *.iml
+.idea
 
 web/web-app/js/lib

@@ -23,16 +23,5 @@ class PageController {
 
 	}
 
-	/**
-	 * Present the user with some links to download the appropriate files for running a trivia night.
-	 */
-	def download( PageDownloadCommand cmd ) {
-
-		if ( cmd.demo ) {
-
-		}
-
-	}
-
 }
 

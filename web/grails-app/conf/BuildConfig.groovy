@@ -33,7 +33,7 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
-        // runtime 'mysql:mysql-connector-java:5.1.16'
+		runtime 'mysql:mysql-connector-java:5.1.23'
     }
 
     plugins {
@@ -41,8 +41,9 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.7.1"
         runtime ":resources:1.1.6"
 
-		compile ":navigation:1.3.2"
-		compile ":shiro:1.1.4"
+		compile ":platform-core:1.0.RC5"
+		compile ":spring-security-core:1.2.7.3"
+		compile ":spring-security-ui:0.2"
 		compile ":famfamfam:1.0.1"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities

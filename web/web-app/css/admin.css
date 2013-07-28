@@ -1,0 +1,13 @@
+h2 {
+    font-size: 1.3em;
+}
+
+.errors ul {
+    list-style: none;
+    margin: 0;
+    width: 80%;
+    padding: 1em;
+    border: solid 1px #f66;
+    background: #fcc;
+    box-shadow: #b44 0 0 3px;
+}
