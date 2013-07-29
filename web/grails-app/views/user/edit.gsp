@@ -23,7 +23,7 @@
 			<g:textField
 				id="input-username"
 				class="${hasErrors( bean : user, field : 'username', 'errors' )}"
-				name="question"
+				name="username"
 				value="${fieldValue( bean : user, field : 'username' )}" />
 		</div>
 
@@ -41,7 +41,7 @@
 				<g:each in="${roles}" var="role">
 					<li>
 						<label>
-							<g:checkBox name="roles" checked="${userRoles*.id.contains( role.id )}" value="${role}" /> ${role.name}
+							<g:checkBox name="roles.id" checked="${userRoles*.id.contains( role.id )}" value="${role.id}" /> ${role.name}
 						</label>
 					</li>
 				</g:each>

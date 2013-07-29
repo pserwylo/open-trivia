@@ -47,13 +47,14 @@ class UserTagLib {
 		users.eachWithIndex { user, index ->
 
 			String clazz = index % 2 == 0 ? "even" : "odd"
+			String editLink = createLink( controller : 'user', action : 'edit', params : [ id : user.id ] )
 			out << """
 				<tr class='$clazz'>
 					<td>$user.username</td>
 					<td>
 						<button
 							name='edit'
-							onclick='document.location = "${createLink( controller : 'user', action : 'edit' )}"'
+							onclick='document.location = "$editLink"'
 							value='${user.id}'>Edit
 						</button>
 						<button name='delete' value='${user.id}'>Delete</button>

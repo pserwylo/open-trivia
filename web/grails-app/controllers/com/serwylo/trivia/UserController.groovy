@@ -2,13 +2,13 @@ package com.serwylo.trivia
 
 import com.serwylo.trivia.auth.Role
 import com.serwylo.trivia.auth.User
+import com.serwylo.trivia.auth.UserRole
 
 class UserController {
 
 	static defaultAction = 'list'
 
 	def userService
-	def springSecurityService
 
 	def list() {
 		return [
@@ -26,8 +26,10 @@ class UserController {
 		User user = null
 		List<Role> userRoles = []
 		if ( flash.user ) {
-			user      = flash.user
-			userRoles = flash.userRoles
+			user = flash.user
+			if ( user.id > 0 ) {
+				userRoles = userService.getRolesForUser( user )
+			}
 		} else if ( params?.containsKey( 'id' ) ) {
 			int userId = params[ 'id' ] as Integer;
 			if ( userId > 0 ) {
@@ -49,18 +51,12 @@ class UserController {
 
 	def save = {
 
-		println params
-		return
-
 		User user
-		List<Role> currentRoles = []
-
 		if ( params.containsKey( 'id' ) ) {
 			int id = params.id as Integer
 			user = User.get( id )
 			if ( user != null ) {
 				user.username = params.username
-				currentRoles  = userService.getRolesForUser( user )
 				if ( params.password?.trim()?.length() ) {
 					user.password = params.password
 				}
@@ -69,13 +65,28 @@ class UserController {
 			}
 		} else {
 			user = new User( params )
+			user.salt = User.generateSalt()
 		}
 
 		if ( user?.validate() ) {
 			user.save()
 
-			List<Role> newRoles = Role.findAllByIdInList( params[ 'roles' ] )
+			// TODO: I'm not sure if this is the most robust way to do this.
+			// Is there a way to force "roles.id" to come back as an array?
+			// e.g. in PHP, you'd append "[]" to the end of the checkbox name.
+			List<Long> roleIds = []
+			def roleIdsFromForm = params[ 'roles.id' ]
+			if ( roleIdsFromForm instanceof String[] ) {
+				roleIds = roleIdsFromForm.collect { it as Long }
+			} else {
+				Long roleId = roleIdsFromForm as Long
+				if ( roleId > 0 ) {
+					roleIds.add( roleId )
+				}
+			}
 
+			List<Role> newRoles = userService.getRoles( roleIds )
+			userService.updateUserRoles( user, newRoles )
 			redirect( action : 'list' )
 		} else {
 			flash.user = user

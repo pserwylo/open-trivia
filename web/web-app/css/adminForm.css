@@ -3,7 +3,8 @@ textarea {
     border: solid 1px #888;
 }
 
-textarea.errors {
+textarea.errors,
+input[type=text].errors {
     box-shadow: #f00 0 0 3px;
 }
 
@@ -13,6 +14,11 @@ textarea.large {
 
 textarea.small {
     height: 60px;
+}
+
+input[type=text] {
+    width: 300px;
+    border: solid 1px #888;
 }
 
 select {
