@@ -1,10 +1,13 @@
-package com.serwylo.trivia
+package com.serwylo.trivia.admin
 
+import com.serwylo.trivia.Question
 import com.serwylo.trivia.web.DifficultyService
 import com.serwylo.trivia.web.QuestionService
 import com.serwylo.trivia.web.SubjectService
 
 class QuestionController {
+
+	static defaultAction = 'list'
 
 	SubjectService subjectService
 	DifficultyService difficultyService

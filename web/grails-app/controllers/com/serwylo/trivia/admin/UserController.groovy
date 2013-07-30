@@ -1,4 +1,4 @@
-package com.serwylo.trivia
+package com.serwylo.trivia.admin
 
 import com.serwylo.trivia.auth.Role
 import com.serwylo.trivia.auth.User

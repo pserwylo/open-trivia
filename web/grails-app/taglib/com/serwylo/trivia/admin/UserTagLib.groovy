@@ -1,8 +1,6 @@
 package com.serwylo.trivia.admin
 
-import com.serwylo.trivia.Question
 import com.serwylo.trivia.auth.User
-import com.serwylo.trivia.web.QuestionService
 
 class UserTagLib {
 
