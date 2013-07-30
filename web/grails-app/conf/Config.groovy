@@ -105,14 +105,15 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.serwylo.t
 grails.plugins.springsecurity.authority.className               = 'com.serwylo.trivia.auth.Role'
 grails.plugins.springsecurity.securityConfigType                = 'InterceptUrlMap'
 
-grails.plugins.sprintsecurity.interceptUrlMap = [
-	'/question/**' : [ Role.ADMIN ],
-	'/user/**'     : [ Role.ADMIN ],
-	'/page/**'     : [ Role.ANONYMOUS ],
-	'/js/**'       : [ Role.ANONYMOUS ],
-	'/css/**'      : [ Role.ANONYMOUS ],
-	'/images/**'   : [ Role.ANONYMOUS ],
-	'/login/**'    : [ Role.ANONYMOUS ],
-	'/logout/**'   : [ Role.ANONYMOUS ],
-	'/*'           : [ Role.ANONYMOUS ],
+grails.plugins.springsecurity.interceptUrlMap = [
+	'/adminDash/**' : [ 'ROLE_ADMIN' ],
+	'/question/**'  : [ 'ROLE_ADMIN' ],
+	'/user/**'      : [ 'ROLE_ADMIN' ],
+	'/page/**'      : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/js/**'        : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/css/**'       : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/images/**'    : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/login/**'     : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/logout/**'    : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/*'            : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
 ]
