@@ -30,7 +30,7 @@ class BootStrap {
 			}
 
 			if ( authority == Role.ADMIN && createInitialUser ) {
-				User admin = new User( username : "admin", password : "admin", salt : User.generateSalt() )
+				User admin = new User( username : "admin", password : "admin" )
 				admin.save( flush : true )
 
 				UserRole adminRole = new UserRole( user : admin, role : role )

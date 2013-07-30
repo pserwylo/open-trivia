@@ -6,7 +6,6 @@ class User {
 
 	String username
 	String password
-	String salt
 	boolean enabled         = true
 	boolean accountExpired  = false
 	boolean accountLocked   = false
@@ -36,16 +35,7 @@ class User {
 	}
 
 	protected void encodePassword() {
-		password = springSecurityService.encodePassword(password, salt)
+		password = springSecurityService.encodePassword(password)
 	}
 
-	static String generateSalt() {
-		def chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`~!@#\$%^&*()\"|_+-=;:'<>,./?"
-		def sb = new StringBuilder()
-		for ( int i in 0..15 ) {
-			def index = (int)( Math.random() * ( chars.length() - 1 ) )
-			sb.append( chars[ index ] )
-		}
-		return sb.toString()
-	}
 }

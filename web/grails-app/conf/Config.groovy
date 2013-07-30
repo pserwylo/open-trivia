@@ -103,6 +103,8 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName    = 'com.serwylo.trivia.auth.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.serwylo.trivia.auth.UserRole'
 grails.plugins.springsecurity.authority.className               = 'com.serwylo.trivia.auth.Role'
+grails.plugins.springsecurity.password.algorithm                = 'bcrypt'
+grails.plugins.springsecurity.password.bcrypt.logrounds         = 15
 grails.plugins.springsecurity.securityConfigType                = 'InterceptUrlMap'
 
 grails.plugins.springsecurity.interceptUrlMap = [

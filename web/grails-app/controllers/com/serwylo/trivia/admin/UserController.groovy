@@ -65,7 +65,6 @@ class UserController {
 			}
 		} else {
 			user = new User( params )
-			user.salt = User.generateSalt()
 		}
 
 		if ( user?.validate() ) {
