@@ -14,16 +14,9 @@ ul#main-options {
     padding: 0;
 }
 
-li.option {
-    border: solid 1px #888;
-    display: block;
+.option {
     float: left;
-    padding: 1.5em;
-    margin: 1em;
     text-align: center;
-    box-shadow: #bbb 0.3em 0.3em 1em;
-    border-radius: 0.3em;
-    width: 300px;
 }
 
 li.option button {

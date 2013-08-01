@@ -29,7 +29,7 @@
 
 	<r:require module="adminList" />
 
-	<meta name="layout" content="main"></head>
+	<meta name="layout" content="admin"></head>
 <body>
 
 	<div class="filter-bar">

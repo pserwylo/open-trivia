@@ -1,46 +1,51 @@
 <html>
 <head>
-	<meta name='layout' content='main'/>
+	<meta name='layout' content='public'/>
+	<r:require module="login" />
 	<title><g:message code="springSecurity.login.title"/></title>
+
+	<g:javascript>
+		(function() {
+			document.forms['loginForm'].elements['j_username'].focus();
+		})();
+	</g:javascript>
 </head>
 
 <body>
-<div id='login'>
-	<div class='inner'>
-		<div class='fheader'><g:message code="springSecurity.login.header"/></div>
 
+	<triv:panel titleCode="springSecurity.login.header">
 		<g:if test='${flash.message}'>
-			<div class='login_message'>${flash.message}</div>
+			<div class="errors">
+				<ul>
+					<li>${flash.message}</li>
+				</ul>
+			</div>
 		</g:if>
 
-		<form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
-			<p>
-				<label for='username'><g:message code="springSecurity.login.username.label"/>:</label>
-				<input type='text' class='text_' name='j_username' id='username'/>
-			</p>
+		<form action='${postUrl}' method='POST'>
+			<div class="input">
+				<label for='username'>
+					<g:message code="springSecurity.login.username.label"/>
+				</label>
+				<g:textField name='j_username' id='username'/>
+			</div>
 
-			<p>
-				<label for='password'><g:message code="springSecurity.login.password.label"/>:</label>
-				<input type='password' class='text_' name='j_password' id='password'/>
-			</p>
+			<div class="input">
+				<label for='password'>
+					<g:message code="springSecurity.login.password.label"/>
+				</label>
+				<g:passwordField name='j_password' id='password'/>
+			</div>
 
-			<p id="remember_me_holder">
-				<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me' <g:if test='${hasCookie}'>checked='checked'</g:if>/>
-				<label for='remember_me'><g:message code="springSecurity.login.remember.me.label"/></label>
-			</p>
+			<div class="input">
+				<label>
+					<g:checkBox name='${rememberMeParameter}' id='remember_me' checked='${hasCookie}' />
+					<g:message code="springSecurity.login.remember.me.label"/>
+				</label>
+			</div>
 
-			<p>
-				<input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
-			</p>
+			<g:submitButton name='${message(code: "springSecurity.login.button")}'/>
 		</form>
-	</div>
-</div>
-<script type='text/javascript'>
-	<!--
-	(function() {
-		document.forms['loginForm'].elements['j_username'].focus();
-	})();
-	// -->
-</script>
+	</triv:panel>
 </body>
 </html>

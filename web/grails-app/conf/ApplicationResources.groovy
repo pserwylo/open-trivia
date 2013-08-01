@@ -6,6 +6,12 @@ modules = {
 		dependsOn( [ "jquery" ] )
 	}
 
+	login {
+		resource( url: "css/login.css" )
+		resource( url: "css/form.css" )
+		dependsOn( [ "widget" ] )
+	}
+
 	publicPage {
 		resource( url: "css/public.css" )
 		dependsOn( [ 'misc' ] )
@@ -13,7 +19,11 @@ modules = {
 
 	home {
 		resource( url: "css/home.css" )
-		dependsOn( 'misc' )
+		dependsOn( [ 'misc', 'widget' ] )
+	}
+
+	widget {
+		resource( url: "css/widget/panel.css" )
 	}
 
 	admin {
@@ -27,7 +37,7 @@ modules = {
 	}
 
 	adminForm {
-		resource( url: "css/adminForm.css" )
+		resource( url: "css/form.css" )
 		dependsOn( [ "admin" ] )
 	}
 

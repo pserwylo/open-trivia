@@ -1,0 +1,13 @@
+.panel input[type=text],
+.panel input[type=password] {
+    width: 200px;
+}
+
+.panel {
+    margin: auto;
+}
+
+.errors {
+    font-size: 0.8em;
+    margin-bottom: 0.5em;
+}

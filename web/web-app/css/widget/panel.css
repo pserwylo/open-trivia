@@ -1,0 +1,22 @@
+.panel {
+    border: solid 1px #888;
+    display: block;
+    margin: 1em;
+    box-shadow: #bbb 0.3em 0.3em 1em;
+    border-radius: 0.3em;
+    width: 300px;
+}
+
+.panel .contents {
+    padding: 1.5em;
+}
+
+.panel .header {
+    padding: 0.5em;
+    font-size: 1.3em;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    background: #eee;
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+}

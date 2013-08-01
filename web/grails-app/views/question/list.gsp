@@ -48,7 +48,7 @@
 
 	<r:require module="adminQuestionList" />
 
-	<meta name="layout" content="main"></head>
+	<meta name="layout" content="admin"></head>
 <body>
 
 	<g:if test="${flash.errors}">

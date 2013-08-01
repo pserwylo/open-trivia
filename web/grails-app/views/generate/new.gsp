@@ -10,7 +10,7 @@
 <html>
 <head>
 	<title></title>
-	<meta name="layout" content="page" />
+	<meta name="layout" content="public" />
 	<r:require module="viewsGenerate" />
 </head>
 <body>

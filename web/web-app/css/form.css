@@ -4,7 +4,8 @@ textarea {
 }
 
 textarea.errors,
-input[type=text].errors {
+input[type=text].errors,
+input[type=password].errors {
     box-shadow: #f00 0 0 3px;
 }
 
@@ -16,7 +17,8 @@ textarea.small {
     height: 60px;
 }
 
-input[type=text] {
+input[type=text],
+input[type=password] {
     width: 300px;
     border: solid 1px #888;
 }

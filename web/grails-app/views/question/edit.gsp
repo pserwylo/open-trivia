@@ -3,7 +3,7 @@
 <head>
 	<title>Question details</title>
 	<r:require module="adminForm" />
-	<meta name="layout" content="main"></head>
+	<meta name="layout" content="admin"></head>
 <body>
 
 	<g:if test="${question?.hasErrors()}">

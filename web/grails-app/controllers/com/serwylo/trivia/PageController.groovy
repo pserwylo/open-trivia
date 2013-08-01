@@ -7,7 +7,7 @@ package com.serwylo.trivia
  */
 class PageController {
 
-	static layout = "page"
+	static layout = "public"
 
 	/**
 	 * Either display the home page, or decide which other page needs to be rendered.

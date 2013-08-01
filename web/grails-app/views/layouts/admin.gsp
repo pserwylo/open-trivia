@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Grails"/></title>
+		<title><g:layoutTitle default="Trivia"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
@@ -15,12 +15,31 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<g:layoutHead/>
+		<r:require module="admin" />
         <r:layoutResources />
 	</head>
 	<body>
-		<div id="header" role="banner">Open Trivia</div>
-		<g:layoutBody/>
+		<div id="header">
+			<h1>Trivia Engine</h1>
+			<ul class="nav primary extra">
+				<sec:ifLoggedIn>
+					<li>
+						<g:link controller="user" action="edit" id="${sec.loggedInUserInfo( [ field : 'id' ])}">
+							<sec:username/>
+						</g:link>
+					</li>
+					<li>
+						<g:link controller="logout">Logout</g:link>
+					</li>
+				</sec:ifLoggedIn>
+			</ul>
+			<nav:primary scope="adminScope" />
+		</div>
+		<div id="content">
+			<g:layoutBody/>
+		</div>
 		<div class="footer" role="contentinfo"></div>
+		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
         <r:layoutResources />
 	</body>
 </html>
