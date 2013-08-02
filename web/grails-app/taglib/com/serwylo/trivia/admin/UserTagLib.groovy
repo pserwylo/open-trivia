@@ -1,6 +1,8 @@
 package com.serwylo.trivia.admin
 
+import com.serwylo.trivia.auth.Role
 import com.serwylo.trivia.auth.User
+import com.serwylo.trivia.auth.UserRole
 
 class UserTagLib {
 
@@ -25,6 +27,7 @@ class UserTagLib {
 				<thead>
 					<tr>
 						<th class='username'>Username</th>
+						<th class='roles'>Roles</th>
 						<th class='actions'></th>
 					</tr>
 				</thead>
@@ -46,9 +49,11 @@ class UserTagLib {
 
 			String clazz = index % 2 == 0 ? "even" : "odd"
 			String editLink = createLink( controller : 'user', action : 'edit', params : [ id : user.id ] )
+			List<Role> roles = userService.getRolesForUser( user )
 			out << """
 				<tr class='$clazz'>
 					<td>$user.username</td>
+					<td>${roles*.name.join( ', ' )}</td>
 					<td>
 						<button
 							name='edit'

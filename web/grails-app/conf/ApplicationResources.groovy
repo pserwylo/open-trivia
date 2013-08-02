@@ -46,6 +46,11 @@ modules = {
 		dependsOn( [ "adminList" ] )
 	}
 
+	adminUserList {
+		resource( url: "css/adminUserList.css" )
+		dependsOn( [ "adminList" ] )
+	}
+
 	adminSubjectList {
 		resource( url: "css/adminSubjectList.css" )
 		dependsOn( [ "adminList" ] )

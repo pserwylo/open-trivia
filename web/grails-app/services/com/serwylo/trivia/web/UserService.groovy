@@ -3,8 +3,16 @@ package com.serwylo.trivia.web
 import com.serwylo.trivia.auth.Role
 import com.serwylo.trivia.auth.User
 import com.serwylo.trivia.auth.UserRole
+import grails.plugins.springsecurity.SpringSecurityService
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 class UserService {
+
+	SpringSecurityService springSecurityService
+
+	User getCurrent() {
+        (User)springSecurityService.currentUser
+    }
 
 	def updateUserRoles( User user, List<Role> roles ) {
 

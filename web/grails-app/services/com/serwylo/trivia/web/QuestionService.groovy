@@ -6,13 +6,7 @@ import com.serwylo.trivia.Subject
 
 class QuestionService {
 
-	List<Question> getAllQuestions() {
-
-		return Question.list()
-
-	}
-
-	List<Question> getQuestions(long subjectId, long difficultyId ) {
+	List<Question> getQuestions(long subjectId = 0, long difficultyId = 0) {
 
 		Question.withCriteria {
 

@@ -27,7 +27,7 @@
 		});
 	</g:javascript>
 
-	<r:require module="adminList" />
+	<r:require module="adminUserList" />
 
 	<meta name="layout" content="admin"></head>
 <body>

@@ -18,10 +18,6 @@
 			var filterDifficulty = $( '#filter-difficulty' );
 			var tableBody        = $( '#list-questions' ).find( 'tbody' );
 
-			filterSubject.change( function() {
-				refreshList();
-			});
-
 			$( 'button[name=edit]' ).click( function() {
 				var questionId = $( this ).val();
 				document.location = '${createLink( action : 'edit' )}?id=' + questionId;
@@ -43,6 +39,9 @@
 				tableBody.load( '${createLink( action : 'ajaxList' )}', params );
 			};
 
+			filterSubject.change( refreshList );
+			filterDifficulty.change( refreshList );
+
 		});
 	</g:javascript>
 
@@ -63,6 +62,7 @@
 			name="filter-subject"
 			from="${subjects}"
 			optionKey="id"
+			value="${subjectId}"
 			noSelection="${[ 0 : 'All Subjects' ]}"/>
 		<g:select
 			name="filter-difficulty"
@@ -71,7 +71,7 @@
 			noSelection="${[ 0 : 'All Difficulties' ]}" />
 	</triv:filterBar>
 
-	<triv:questionList/>
+	<triv:questionList questions="${questions}"/>
 
 </body>
 </html>

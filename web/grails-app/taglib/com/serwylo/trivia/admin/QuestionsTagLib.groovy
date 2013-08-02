@@ -18,7 +18,7 @@ class QuestionsTagLib {
 		if ( attrs.containsKey( 'questions' ) ) {
 			questions = attrs.remove( 'questions' )
 		} else {
-			questions = questionService.allQuestions
+			questions = questionService.questions
 		}
 
 		out << """
