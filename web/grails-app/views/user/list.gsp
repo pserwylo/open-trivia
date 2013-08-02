@@ -32,7 +32,9 @@
 	<meta name="layout" content="admin"></head>
 <body>
 
-	<div class="filter-bar">
+	<triv:notify />
+
+	<triv:filterBar>
 		<button
 			id="btn-add"
 			onclick="document.location='${createLink(action: 'edit')}'">
@@ -43,7 +45,7 @@
 			from="${roles}"
 			optionKey="id"
 			noSelection="${[ 0 : 'All Roles' ]}"/>
-	</div>
+	</triv:filterBar>
 
 	<triv:userList/>
 

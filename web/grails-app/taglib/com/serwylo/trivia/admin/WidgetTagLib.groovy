@@ -4,6 +4,12 @@ class WidgetTagLib {
 
 	static namespace = "triv"
 
+	def filterBar = { attrs, body ->
+		out << "<div class='filter-bar'>"
+		out << body()
+		out << "</div>"
+	}
+
 	/**
 	 * @attr title
 	 * @attr titleCode

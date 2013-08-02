@@ -51,15 +51,9 @@
 	<meta name="layout" content="admin"></head>
 <body>
 
-	<g:if test="${flash.errors}">
-		<ul class="errors">
-			<g:each in="${flash.errors}" var="error">
-					<li>${error}</li>
-			</g:each>
-		</ul>
-	</g:if>
+	<triv:notify />
 
-	<div class="filter-bar">
+	<triv:filterBar>
 		<button
 			id="btn-add"
 			onclick="document.location='${createLink(action: 'edit')}'">
@@ -75,7 +69,7 @@
 			from="${difficulties}"
 			optionKey="id"
 			noSelection="${[ 0 : 'All Difficulties' ]}" />
-	</div>
+	</triv:filterBar>
 
 	<triv:questionList/>
 

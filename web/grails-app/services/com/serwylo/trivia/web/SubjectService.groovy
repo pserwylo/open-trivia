@@ -14,4 +14,7 @@ class SubjectService {
 
 	}
 
+	List<Subject> allExcept( Subject subject = null ) {
+		Subject.findAllByIdNotEqual( subject?.id )
+	}
 }

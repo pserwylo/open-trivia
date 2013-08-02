@@ -52,8 +52,8 @@
 			<g:submitButton
 				name="Save" />
 			<button
-				id="btn-cancel"
-				onclick="document.location='${createLink(action: 'list')}'">
+				onclick="document.location='${createLink(action: 'list')}'"
+				type="button">
 				Cancel
 			</button>
 		</div>

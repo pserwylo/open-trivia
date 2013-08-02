@@ -4,7 +4,7 @@ import com.serwylo.trivia.auth.Role
 import com.serwylo.trivia.auth.User
 import com.serwylo.trivia.auth.UserRole
 
-class UserController {
+class UserController extends CRUDController {
 
 	static defaultAction = 'list'
 
@@ -16,13 +16,13 @@ class UserController {
 		]
 	}
 
-	def error( String message ) {
-		flash.errors = [ message ]
-		redirect( action : 'list' )
+	def delete() {
+
 	}
 
 	def edit() {
 
+		long id = idParam
 		User user = null
 		List<Role> userRoles = []
 		if ( flash.user ) {
@@ -30,14 +30,13 @@ class UserController {
 			if ( user.id > 0 ) {
 				userRoles = userService.getRolesForUser( user )
 			}
-		} else if ( params?.containsKey( 'id' ) ) {
-			int userId = params[ 'id' ] as Integer;
-			if ( userId > 0 ) {
-				user = User.get( userId )
+		} else if ( id ) {
+			if ( id ) {
+				user = User.get( id )
 				if ( user != null ) {
 					userRoles = userService.getRolesForUser( user )
 				} else {
-					error( "User $userId not found." )
+					error( "User $id not found." )
 				}
 			}
 		}

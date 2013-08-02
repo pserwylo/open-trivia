@@ -31,18 +31,23 @@ modules = {
 		dependsOn( [ "misc" ] )
 	}
 
-	adminList {
-		resource( url: "css/adminList.css" )
-		dependsOn( [ "admin" ] )
-	}
-
 	adminForm {
 		resource( url: "css/form.css" )
 		dependsOn( [ "admin" ] )
 	}
 
+	adminList {
+		resource( url: "css/adminList.css" )
+		dependsOn( [ "admin" ] )
+	}
+
 	adminQuestionList {
 		resource( url: "css/adminQuestionList.css" )
+		dependsOn( [ "adminList" ] )
+	}
+
+	adminSubjectList {
+		resource( url: "css/adminSubjectList.css" )
 		dependsOn( [ "adminList" ] )
 	}
 

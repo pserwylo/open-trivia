@@ -7,14 +7,15 @@ package com.serwylo.trivia
 class Subject {
 
 	static constraints = {
+		name( nullable: false, blank: false, unique: true )
 		parent( nullable: true )
-		description( nullable: true )
+		description( blank: true )
 	}
 
 	static hasMany = [ children: Subject ]
 
 	String name
-	String description
+	String description = ""
 	Subject parent
 	Date dateCreated
 	Date lastUpdated

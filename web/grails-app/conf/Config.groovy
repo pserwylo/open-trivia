@@ -110,6 +110,7 @@ grails.plugins.springsecurity.securityConfigType                = 'InterceptUrlM
 grails.plugins.springsecurity.interceptUrlMap = [
 	'/adminDash/**' : [ 'ROLE_ADMIN' ],
 	'/question/**'  : [ 'ROLE_ADMIN' ],
+	'/subject/**'   : [ 'ROLE_ADMIN' ],
 	'/user/**'      : [ 'ROLE_ADMIN' ],
 	'/page/**'      : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
 	'/js/**'        : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
