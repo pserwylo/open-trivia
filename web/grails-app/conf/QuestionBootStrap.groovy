@@ -11,12 +11,7 @@ class QuestionBootStrap {
     def init = { servletContext ->
 
 		initDifficulties();
-
-		if ( Environment.current == Environment.DEVELOPMENT ) {
-
-			initDefaultSubjects()
-
-		}
+		initDefaultSubjects()
 
 	}
 

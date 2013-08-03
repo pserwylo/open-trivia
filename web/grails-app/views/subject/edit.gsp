@@ -43,7 +43,7 @@
 				name="parent.id"
 				from="${parentSubjects}"
 				optionKey="id"
-				noSelection="${[ 0 : "None (top level subject)" ]}"
+				noSelection="${[ "null" : "None (top level subject)" ]}"
 				value="${subject?.parent?.id}" />
 		</div>
 
