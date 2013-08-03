@@ -1,7 +1,7 @@
-th.actions {
-    width: 120px;
+th.name {
+    width: 50%;
 }
 
 th.questions {
-    width: 100px;
+    width: 50%;
 }

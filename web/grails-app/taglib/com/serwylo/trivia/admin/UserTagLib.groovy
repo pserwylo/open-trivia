@@ -47,20 +47,17 @@ class UserTagLib {
 
 		users.eachWithIndex { user, index ->
 
-			String clazz = index % 2 == 0 ? "even" : "odd"
-			String editLink = createLink( controller : 'user', action : 'edit', params : [ id : user.id ] )
-			List<Role> roles = userService.getRolesForUser( user )
+			String clazz      = index % 2 == 0 ? "even" : "odd"
+			String editLink   = createLink( controller : 'user', action : 'edit',   params : [ id : user.id ] )
+			String deleteLink = createLink( controller : 'user', action : 'delete', params : [ id : user.id ] )
+			List<Role> roles  = userService.getRolesForUser( user )
 			out << """
 				<tr class='$clazz'>
 					<td>$user.username</td>
 					<td>${roles*.name.join( ', ' )}</td>
-					<td>
-						<button
-							name='edit'
-							onclick='document.location = "$editLink"'
-							value='${user.id}'>Edit
-						</button>
-						<button name='delete' value='${user.id}'>Delete</button>
+					<td class="actions">
+						${triv.action( type: 'edit',   link : editLink   )}
+						${triv.action( type: 'delete', link : deleteLink )}
 					</td>
 				</tr>
 """

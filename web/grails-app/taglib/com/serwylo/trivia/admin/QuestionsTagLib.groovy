@@ -63,9 +63,9 @@ class QuestionsTagLib {
 					<td>${truncate(question.question, 60)}</td>
 					<td>${truncate(question.answer, 20)}</td>
 					<td>$question.subject.name</td>
-					<td>
-						<button name='edit'   value='${question.id}'>Edit  </button>
-						<button name='delete' value='${question.id}'>Delete</button>
+					<td class='actions'>
+						${triv.action( [ type : 'edit',   link : g.createLink( controller : 'question', action : 'edit'   )])}
+						${triv.action( [ type : 'delete', link : g.createLink( controller : 'question', action : 'delete' )])}
 					</td>
 				</tr>
 """

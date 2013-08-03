@@ -7,6 +7,11 @@ table.list {
     border-collapse: collapse;
 }
 
+table.list th.actions, table.list td.actions {
+    white-space: nowrap;
+    word-spacing: 0.5em;
+}
+
 table.list th {
     text-align: left;
     background-color: #ddd;

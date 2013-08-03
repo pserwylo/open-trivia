@@ -1,7 +1,8 @@
-th.actions {
-    width: 120px;
+th.username {
+    width: 50%;
 }
 
 th.roles {
-    width: 150px;
+    width: 50%;
+    white-space: nowrap;
 }

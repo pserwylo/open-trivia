@@ -67,6 +67,20 @@ class QuestionController extends CRUDController {
 
 	def delete() {
 
+		long id = idParam
+		Question question = null
+		if ( id ) {
+			question = Question.get( id )
+		}
+
+		if ( question == null ) {
+			redirect( [ action : 'list' ] )
+		} else {
+			String questionText = question.question
+			question.delete()
+			success( "Question \"$questionText\" deleted." )
+		}
+
 	}
 
 	def save = {
