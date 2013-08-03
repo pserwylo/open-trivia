@@ -6,9 +6,37 @@ import com.serwylo.trivia.Subject
 
 class QuestionService {
 
-	List<Question> getQuestions(long subjectId = 0, long difficultyId = 0) {
+	List<Question> list(def params) {
+		def listParams = [
+			max    : params?.max    ? params.max    : 5,
+			offset : params?.offset ? params.offset : 0,
+			sort   : params?.sort   ? params.sort   : null,
+			order  : params?.order  ? params.order  : null,
+		]
+		Question.createCriteria().list( listParams, generateCriteria( params ) )
+	}
 
-		Question.withCriteria {
+	int count(def params) {
+		Question.createCriteria().count( generateCriteria( params ) )
+	}
+
+	private Closure generateCriteria( def params = null ) {
+
+		long subjectId = 0
+		if ( params?.containsKey( 'subject.id' ) && params[ 'subject.id' ] != 'null' ) {
+			try {
+				subjectId = params[ 'subject.id' ] as Long
+			} catch ( NumberFormatException e ) {}
+		}
+
+		long difficultyId = 0
+		if ( params?.containsKey( 'difficulty.id' ) && params[ 'difficulty.id' ] != 'null' ) {
+			try {
+				difficultyId = params[ 'difficulty.id' ] as Long
+			} catch ( NumberFormatException e ) {}
+		}
+
+		def criteria = {
 
 			if ( subjectId > 0 ) {
 				subject {
@@ -21,8 +49,9 @@ class QuestionService {
 					eq ( 'id', difficultyId )
 				}
 			}
-
 		}
+
+		return criteria
 
 	}
 }

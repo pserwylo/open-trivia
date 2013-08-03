@@ -24,4 +24,8 @@ class Subject {
 		return name
 	}
 
+	int getNumQuestions() {
+		Question.countBySubject( this )
+	}
+
 }

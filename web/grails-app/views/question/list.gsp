@@ -14,33 +14,10 @@
 				}
 			});
 
-			var filterSubject    = $( '#filter-subject' );
-			var filterDifficulty = $( '#filter-difficulty' );
-			var tableBody        = $( '#list-questions' ).find( 'tbody' );
-
-			$( 'button[name=edit]' ).click( function() {
-				var questionId = $( this ).val();
-				document.location = '${createLink( action : 'edit' )}?id=' + questionId;
+			var filterBar = $( '.filter-bar' );
+			filterBar.find( "select" ).change( function() {
+				filterBar.find( "form" ).submit();
 			});
-
-			var refreshList = function() {
-				var params = {};
-
-				var subjectId = filterSubject.val();
-				if ( subjectId != '0' ) {
-					params.subjectId = subjectId;
-				}
-
-				var difficultyId = filterDifficulty.val();
-				if (difficultyId != '0' ) {
-					params.difficultyId = difficultyId;
-				}
-
-				tableBody.load( '${createLink( action : 'ajaxList' )}', params );
-			};
-
-			filterSubject.change( refreshList );
-			filterDifficulty.change( refreshList );
 
 		});
 	</g:javascript>
@@ -53,25 +30,62 @@
 	<triv:notify />
 
 	<triv:filterBar>
-		<button
-			id="btn-add"
-			onclick="document.location='${createLink(action: 'edit')}'">
-			New question
-		</button>
-		<g:select
-			name="filter-subject"
-			from="${subjects}"
-			optionKey="id"
-			value="${subjectId}"
-			noSelection="${[ 0 : 'All Subjects' ]}"/>
-		<g:select
-			name="filter-difficulty"
-			from="${difficulties}"
-			optionKey="id"
-			noSelection="${[ 0 : 'All Difficulties' ]}" />
+		<g:form
+			action="list"
+			method="get">
+			<button
+				id="btn-add"
+				onclick="document.location='${createLink(action: 'edit')}'">
+				New question
+			</button>
+			<g:select
+				name="subject.id"
+				from="${subjects}"
+				optionKey="id"
+				value="${params['subject.id']}"
+				noSelection="${[ 'null' : 'All Subjects' ]}"/>
+			<g:select
+				name="difficulty.id"
+				from="${difficulties}"
+				optionKey="id"
+				value="${params['difficulty.id']}"
+				noSelection="${[ 'null' : 'All Difficulties' ]}" />
+		</g:form>
 	</triv:filterBar>
 
-	<triv:questionList questions="${questions}"/>
+	<table class='list'>
+		<thead>
+			<tr>
+				<g:sortableColumn
+					property="question"
+					title="Question"/>
+				<g:sortableColumn
+					property="answer"
+					title="Answer" />
+				<g:sortableColumn
+					property="subject"
+					title="Subject" />
+				<th class='actions'></th>
+			</tr>
+		</thead>
+		<tbody>
+			<g:each in="${questions}" var="question">
+				<tr>
+					<td><triv:truncate string="${question.question}" length="60" /></td>
+					<td><triv:truncate string="${question.answer}"   length="20" /></td>
+					<td>${question.subject.name}</td>
+					<td>
+						<triv:actionButton action="edit"   id="${question.id}" />
+						<triv:actionButton action="delete" id="${question.id}" />
+					</td>
+				</tr>
+			</g:each>
+		</tbody>
+	</table>
+
+	<div class="pages">
+		<g:paginate total="${count}" action="list" offset="${params?.offset}" max="5" />
+	</div>
 
 </body>
 </html>

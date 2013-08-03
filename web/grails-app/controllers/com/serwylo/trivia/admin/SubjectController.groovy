@@ -11,7 +11,9 @@ class SubjectController extends CRUDController {
 
 	def list() {
 
-		return []
+		def subjects = subjectService.list( params )
+		def count    = subjectService.count( params )
+		return [ subjects : subjects, count : count ]
 
 	}
 

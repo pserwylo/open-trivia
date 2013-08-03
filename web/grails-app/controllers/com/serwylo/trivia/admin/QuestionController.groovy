@@ -1,6 +1,7 @@
 package com.serwylo.trivia.admin
 
 import com.serwylo.trivia.Question
+import com.serwylo.trivia.Subject
 import com.serwylo.trivia.web.DifficultyService
 import com.serwylo.trivia.web.QuestionService
 import com.serwylo.trivia.web.SubjectService
@@ -17,27 +18,23 @@ class QuestionController extends CRUDController {
 
 	def list() {
 
-		def subjectId = 0
-		if ( params.containsKey( 'subjectId' ) ) {
-			try {
-				subjectId = Long.parseLong( params.subjectId )
-			} catch ( NumberFormatException nfe ) {}
-		}
-
-		def questions = questionService.getQuestions( subjectId )
+		def questions = questionService.list( params )
+		def count     = questionService.count( params )
+		def subjects  = Subject.list()
 
 		return [
-			subjects     : subjectService.subjectList,
+			subjects     : subjects,
 			difficulties : difficultyService.difficulties,
-			subjectId    : subjectId,
 			questions    : questions,
+			count        : count,
+			params       : params,
 		]
 
 	}
 
-	def ajaxList = { QuestionListFilterCommand cmd ->
+	def ajaxList = {
 
-		List<Question> questions = questionService.getQuestions( cmd.subjectId, cmd.difficultyId )
+		List<Question> questions = questionService.list( params )
 		render triv.questionListItems( questions : questions )
 
 	}
@@ -108,12 +105,5 @@ class QuestionController extends CRUDController {
 			forward( action : 'edit' )
 		}
 	}
-
-}
-
-class QuestionListFilterCommand {
-
-	int subjectId
-	int difficultyId
 
 }

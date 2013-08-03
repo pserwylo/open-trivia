@@ -4,14 +4,13 @@ import com.serwylo.trivia.Subject
 
 class SubjectService {
 
-	/**
-	 * Returns a flat list of all subjects.
-	 * @return
-	 */
-    List<Subject> getSubjectList() {
+	int count( def params ) {
 
-		return Subject.list()
+		Subject.count()
+	}
 
+    List<Subject> list( def params ) {
+		Subject.list( params )
 	}
 
 	List<Subject> allExcept( Subject subject = null ) {

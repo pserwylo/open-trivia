@@ -16,7 +16,38 @@
 		</button>
 	</triv:filterBar>
 
-	<triv:subjectList/>
+	<table class='list'>
+		<thead>
+			<tr>
+				<g:sortableColumn
+					property="name"
+					title="Subject"/>
+				<th class='questions'>Questions</th>
+				<th class='actions'></th>
+			</tr>
+		</thead>
+		<tbody>
+			<g:each in="${subjects}" var="subject">
+				<tr>
+					<td>${subject.name}</td>
+					<td>
+						<g:link controller="question" action="list" params="${[ 'subject.id' : subject.id ]}">
+							${subject.numQuestions}
+							question<triv:plural count="${subject.numQuestions}" />
+						</g:link>
+					</td>
+					<td>
+						<triv:actionButton action="edit"   id="${subject.id}" />
+						<triv:actionButton action="delete" id="${subject.id}" />
+					</td>
+				</tr>
+			</g:each>
+		</tbody>
+	</table>
+
+	<div class="pages">
+		<g:paginate total="${count}" action="list" offset="${params?.offset}" max="5" />
+	</div>
 
 </body>
 </html>

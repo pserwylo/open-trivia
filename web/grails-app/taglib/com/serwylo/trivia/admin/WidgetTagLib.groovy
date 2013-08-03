@@ -5,8 +5,8 @@ class WidgetTagLib {
 	static namespace = "triv"
 
 	private static final Map<String, String> ACTIONS = [
-		"edit"   : "Edit",
-		"delete" : "Delete",
+			"edit"   : "Edit",
+			"delete" : "Delete",
 	]
 
 	def filterBar = { attrs, body ->
@@ -16,30 +16,55 @@ class WidgetTagLib {
 	}
 
 	/**
-	 * @attr type REQUIRED
-	 * @attr link REQUIRED
+	 * @attr action REQUIRED
+	 * @attr id REQUIRED
 	 */
-	def action = { attrs ->
-		String type = attrs.remove( 'type' )
-		if ( !ACTIONS.containsKey( type ) ) {
-			def actions = ACTIONS.keySet().join( ', ' )
-			throw new IllegalArgumentException( "Unknown action '$type'. Should be one of $actions." )
+	def actionButton = { attrs ->
+
+		if ( !attrs.containsKey( 'action' ) ) {
+			throwTagError( "Tag [actionButton] doesn't have required [action] attribute." )
 		}
 
-		String label = ACTIONS[ type ]
-		String link  = attrs.remove( 'link' )
-		out << customAction( [ type : type, label : label, link : link ] )
+		if ( !attrs.containsKey( 'id' ) ) {
+			throwTagError( "Tag [actionButton] doesn't have required [id] attribute." )
+		}
+
+		String action = attrs.action
+		long itemId   = attrs.id as Long
+
+		if ( !ACTIONS.containsKey( action ) ) {
+			def actions = ACTIONS.keySet().join( ', ' )
+			throwTagError( "Attribute [action] for tag [actionButton] has unknown type '$action'. Should be one of $actions." )
+		}
+
+		String label = ACTIONS[ action ]
+		String link  = createLink( action : action, params : [ id : itemId ] )
+		out << customActionButton( [ class : action, label : label, link : link ] )
 	}
 
 	/**
 	 * @attr label REQUIRED
-	 * @attr type REQUIRED
+	 * @attr class REQUIRED
 	 * @attr link  REQUIRED
 	 */
-	def customAction = { attrs ->
+	def customActionButton = { attrs ->
+
+		if ( !attrs.containsKey( 'label' ) ) {
+			throwTagError( "Tag [customActionButton] doesn't have required [label] attribute." )
+		}
+
+		if ( !attrs.containsKey( 'class' ) ) {
+			throwTagError( "Tag [customActionButton] doesn't have required [class] attribute." )
+		}
+
+		if ( !attrs.containsKey( 'link' ) ) {
+			throwTagError( "Tag [customActionButton] doesn't have required [link] attribute." )
+		}
+
 		String label = attrs.remove( 'label' )
-		String clazz = attrs.remove( 'type' )
+		String clazz = attrs.remove( 'class' )
 		String link  = attrs.remove( 'link' )
+
 		out << """<a href='$link' class='action type-$clazz'>$label</a>"""
 	}
 
