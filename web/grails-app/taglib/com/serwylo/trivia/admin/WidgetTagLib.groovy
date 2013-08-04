@@ -65,7 +65,7 @@ class WidgetTagLib {
 		String clazz = attrs.remove( 'class' )
 		String link  = attrs.remove( 'link' )
 
-		out << """<a href='$link' class='action type-$clazz'>$label</a>"""
+		out << """<a href='$link' class='action $clazz'>$label</a>"""
 	}
 
 	/**

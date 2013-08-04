@@ -1,32 +1,64 @@
 /* Styles for mobile devices */
 
 @media screen and (max-width: 480px) {
-	.nav {
-		padding: 0.5em;
+
+    /* ===== HEADER ===== */
+
+    #header h1 {
+        font-size: 1.5em;
+        padding: 0.5em;
+        margin: 0;
+    }
+
+    /* ===== MESSAGES ===== */
+
+	.errors ul,
+	.messages p {
+		margin: 0.5em;
 	}
 
-	.nav li {
-		margin: 0 0.5em 0 0;
-		padding: 0.25em;
+	.error ul {
+		margin-left: 0;
 	}
 
-	/* Hide individual steps in pagination, just have next & previous */
-	.pagination .step, .pagination .currentStep {
-		display: none;
-	}
 
-	.pagination .prevLink {
-		float: left;
-	}
+    /* ===== NAVIGATION ===== */
 
-	.pagination .nextLink {
-		float: right;
-	}
+    ul.nav.primary li {
+        width: auto;
+    }
 
-	/* pagination needs to wrap around floated buttons */
-	.pagination {
-		overflow: hidden;
-	}
+    ul.nav.primary li a {
+		margin: 0;
+		padding: 0.5em 0.75em;
+        width: auto;
+    }
+
+    ul.nav.primary .profile {
+        display: none;
+    }
+
+    ul.nav.primary .logout a:hover {
+        border: none;
+    }
+
+    ul.nav.primary.extra .logout {
+        width: auto;
+    }
+
+    ul.nav.primary.extra .logout a {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url( ../images/silk/door_out.png ) no-repeat center center;
+
+        /* Hide the text (http://stackoverflow.com/a/471538) */
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    /* ===== FORMS ===== */
 
 	/* slightly smaller margin around content body */
 	fieldset,
@@ -36,47 +68,91 @@
 
 	input, textarea {
 		width: 100%;
-		   -moz-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		    -ms-box-sizing: border-box;
-		        box-sizing: border-box;
+        box-sizing: border-box;
 	}
 
 	select, input[type=checkbox], input[type=radio], input[type=submit], input[type=button], input[type=reset] {
 		width: auto;
 	}
 
+    /* ===== LISTS ===== */
+
 	/* hide all but the first column of list tables */
-	.scaffold-list td:not(:first-child),
-	.scaffold-list th:not(:first-child) {
+	table.list td:not(:first-child):not(.actions),
+	table.list th:not(:first-child):not(.actions) {
 		display: none;
 	}
 
-	.scaffold-list thead th {
+	/* Hide individual steps in pagination, just have next & previous */
+	.pages .step, .pagination .currentStep {
+		display: none;
+	}
+
+    .pages .nextLink,
+    .pages .prevLink {
+        display: inline-block;
+        width: auto;
+
+        /* Unhide text */
+        text-indent: 0;
+        overflow: visible;
+    }
+
+	.pages .prevLink {
+		float: left;
+        padding-left: 25px;
+        background-position: 5px center;
+	}
+
+	.pages .nextLink {
+		float: right;
+        padding-right: 25px;
+        background-position: right center;
+	}
+
+	/* pagination needs to wrap around floated buttons */
+	.pages {
+		overflow: hidden;
+	}
+
+	table.list thead th {
 		text-align: center;
 	}
 
-	/* stack form elements */
-	.fieldcontain {
-		margin-top: 0.6em;
-	}
+    table.list th.actions {
+        width: 70px;
+    }
 
-	.fieldcontain label,
-	.fieldcontain .property-label,
-	.fieldcontain .property-value {
-		display: block;
-		float: none;
-		margin: 0 0 0.25em 0;
-		text-align: left;
-		width: auto;
-	}
+    table.list tr:hover {
+        background-color: transparent;
+    }
 
-	.errors ul,
-	.message p {
-		margin: 0.5em;
-	}
+    select.hide-on-mobile {
+        display: none;
+    }
 
-	.error ul {
-		margin-left: 0;
-	}
+
+    /* ===== ACTIONS ===== */
+
+    /* Action buttons are only icons */
+    a.action {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        background-position: 50% 50%;
+        background-color: transparent;
+        border: none;
+
+        /* Hide the text (http://stackoverflow.com/a/471538) */
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    a.action:hover {
+        background-color: transparent;
+        text-decoration: none;
+    }
+
 }

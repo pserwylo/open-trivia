@@ -21,7 +21,8 @@
 			<tr>
 				<g:sortableColumn
 					property="name"
-					title="Subject"/>
+					title="Subject"
+					class="name" />
 				<th class='questions'>Questions</th>
 				<th class='actions'></th>
 			</tr>
@@ -36,7 +37,7 @@
 							question<triv:plural count="${subject.numQuestions}" />
 						</g:link>
 					</td>
-					<td>
+					<td class="actions">
 						<triv:actionButton action="edit"   id="${subject.id}" />
 						<triv:actionButton action="delete" id="${subject.id}" />
 					</td>

@@ -45,6 +45,7 @@
 				value="${params['subject.id']}"
 				noSelection="${[ 'null' : 'All Subjects' ]}"/>
 			<g:select
+				class='hide-on-mobile'
 				name="difficulty.id"
 				from="${difficulties}"
 				optionKey="id"
@@ -74,7 +75,7 @@
 					<td><triv:truncate string="${question.question}" length="60" /></td>
 					<td><triv:truncate string="${question.answer}"   length="20" /></td>
 					<td>${question.subject.name}</td>
-					<td>
+					<td class="actions">
 						<triv:actionButton action="edit"   id="${question.id}" />
 						<triv:actionButton action="delete" id="${question.id}" />
 					</td>

@@ -56,7 +56,7 @@ class QuestionController extends CRUDController {
 
 		return [
 			question       : question,
-			subjectList    : subjectService.subjectList,
+			subjectList    : subjectService.list(),
 			difficultyList : difficultyService.difficulties,
 		]
 

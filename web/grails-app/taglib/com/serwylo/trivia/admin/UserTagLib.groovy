@@ -56,8 +56,8 @@ class UserTagLib {
 					<td>$user.username</td>
 					<td>${roles*.name.join( ', ' )}</td>
 					<td class="actions">
-						${triv.action( type: 'edit',   link : editLink   )}
-						${triv.action( type: 'delete', link : deleteLink )}
+						${triv.actionButton( action: 'edit'   )}
+						${triv.actionButton( action: 'delete' )}
 					</td>
 				</tr>
 """

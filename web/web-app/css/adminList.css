@@ -7,9 +7,12 @@ table.list {
     border-collapse: collapse;
 }
 
-table.list th.actions, table.list td.actions {
-    white-space: nowrap;
-    word-spacing: 0.5em;
+table.list th.actions {
+    width: 150px;
+}
+
+table.list td.actions {
+    padding: 0.8em;
 }
 
 table.list th {
@@ -45,9 +48,35 @@ tr.full .remainder { display: inline; }
 .pages {
     width: 100%;
     text-align: center;
-    margin: 0.3em 0;
+    margin: 0.5em 0;
+}
+
+.pages .nextLink {
+    background: url(../images/silk/arrow_right.png) no-repeat center center;
+}
+
+.pages .prevLink {
+    background: url(../images/silk/arrow_left.png) no-repeat center center;
+}
+
+.pages .nextLink,
+.pages .prevLink {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+
+    /* Hide the text (http://stackoverflow.com/a/471538) */
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.pages .currentStep {
+    color: #666;
 }
 
 .currentStep, .step, .nextLink, .prevLink {
-    padding: 0.3em;
+    padding: 0.1em 0.3em;
+    margin: 0 0.2em;
 }
+

@@ -12,7 +12,6 @@ body {
 
 html {
     background-color: #ddd;
-    height: 90%;
     margin: 0;
     box-sizing: border-box;
 }
@@ -83,9 +82,26 @@ ul.nav.primary li.active a {
     background-color: #666;
 }
 
-ul.nav.primary li a:hover {
+/* Button-ish things */
+
+.pages .step,
+.pages .currentStep,
+.pages .nextLink,
+.pages .prevLink,
+.pages .currentStep,
+.action {
+    border: solid 1px #ccc;
+    border-radius: 0.3em;
+}
+
+ul.nav.primary li a:hover,
+.pages .step:hover,
+.pages .nextLink:hover,
+.pages .prevLink:hover,
+.action:hover {
     color: #fff;
-    background-color: #999;
+    background-color: #bbb;
+    text-decoration: none;
 }
 
 .errors ul, .messages ul {
@@ -106,4 +122,18 @@ ul.nav.primary li a:hover {
     border-color: #aaf;
     background: #cfc8ff;
     box-shadow: #5151bb 0 0 3px;
+}
+
+a.action {
+    background: no-repeat 5px 50%;
+    padding: 0.2em 5px 0.2em 25px;
+    margin: 0 0.2em;
+}
+
+a.action.edit {
+    background-image: url( ../images/silk/pencil.png );
+}
+
+a.action.delete {
+    background-image: url( ../images/silk/delete.png );
 }

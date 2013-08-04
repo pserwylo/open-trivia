@@ -13,22 +13,22 @@
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<g:layoutHead/>
 		<r:require module="admin" />
         <r:layoutResources />
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 	</head>
 	<body>
 		<div id="header">
 			<h1>Trivia Engine</h1>
 			<ul class="nav primary extra">
 				<sec:ifLoggedIn>
-					<li>
+					<li class='profile'>
 						<g:link controller="user" action="edit" id="${sec.loggedInUserInfo( [ field : 'id' ])}">
 							<sec:username/>
 						</g:link>
 					</li>
-					<li>
+					<li class='logout'>
 						<g:link controller="logout">Logout</g:link>
 					</li>
 				</sec:ifLoggedIn>

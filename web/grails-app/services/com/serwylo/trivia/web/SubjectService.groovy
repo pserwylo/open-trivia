@@ -9,7 +9,7 @@ class SubjectService {
 		Subject.count()
 	}
 
-    List<Subject> list( def params ) {
+    List<Subject> list( def params = [:] ) {
 		Subject.list( params )
 	}
 
