@@ -1,0 +1,22 @@
+.panel {
+    width: 400px;
+    margin: auto;
+}
+
+.panel .buttons {
+    width: 100%;
+    margin-top: 1em;
+}
+
+.panel .buttons .delete {
+    float: right;
+}
+
+.info {
+    padding: 0.5em 1em;
+}
+
+.label {
+    display: block;
+    font-weight: bold;
+}

@@ -15,6 +15,16 @@ class CRUDTagLib {
 
 	}
 
+	/**
+	 * @attr message REQUIRED
+	 */
+	def message = { attrs ->
+		if ( !attrs.containsKey( 'message' ) ) {
+			throwTagError( "Tag [message] missing required [message] attribute." )
+		}
+		messages( [ attrs.message ], 'messages' )
+	}
+
 	private void messages( def messages, def clazz ) {
 		if ( messages ) {
 			out << "<div class='notifications $clazz'><ul>"

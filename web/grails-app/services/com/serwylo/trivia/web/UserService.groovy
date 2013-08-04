@@ -4,9 +4,8 @@ import com.serwylo.trivia.auth.Role
 import com.serwylo.trivia.auth.User
 import com.serwylo.trivia.auth.UserRole
 import grails.plugins.springsecurity.SpringSecurityService
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
-class UserService {
+class UserService extends CRUDService {
 
 	SpringSecurityService springSecurityService
 
@@ -30,15 +29,11 @@ class UserService {
 
 	}
 
-	def getAllUsers() {
-		User.list()
-	}
-
 	def getAllRoles() {
 		Role.list()
 	}
 
-	def getRolesForUser( User user ) {
+	List<Role> getRolesForUser( User user ) {
 		UserRole.findAllByUser( user )*.role
 	}
 

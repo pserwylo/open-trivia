@@ -4,15 +4,10 @@ import com.serwylo.trivia.Difficulty
 import com.serwylo.trivia.Question
 import com.serwylo.trivia.Subject
 
-class QuestionService {
+class QuestionService extends CRUDService {
 
 	List<Question> list(def params) {
-		def listParams = [
-			max    : params?.max    ? params.max    : 5,
-			offset : params?.offset ? params.offset : 0,
-			sort   : params?.sort   ? params.sort   : null,
-			order  : params?.order  ? params.order  : null,
-		]
+		def listParams = getListParams( params )
 		Question.createCriteria().list( listParams, generateCriteria( params ) )
 	}
 

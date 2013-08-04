@@ -32,13 +32,6 @@ class QuestionController extends CRUDController {
 
 	}
 
-	def ajaxList = {
-
-		List<Question> questions = questionService.list( params )
-		render triv.questionListItems( questions : questions )
-
-	}
-
 	def edit() {
 
 		long id = idParam
@@ -62,21 +55,41 @@ class QuestionController extends CRUDController {
 
 	}
 
-	def delete() {
-
+	/**
+	 * If params.id points to a valid question, return the domain object, otherwise returns null.
+	 */
+	private Question getQuestion() {
 		long id = idParam
 		Question question = null
 		if ( id ) {
 			question = Question.get( id )
 		}
+		return question
+	}
 
-		if ( question == null ) {
-			redirect( [ action : 'list' ] )
-		} else {
-			String questionText = question.question
-			question.delete()
-			success( "Question \"$questionText\" deleted." )
+	// TODO: Check if the question is being used by any trivia nights, and if so, prevent deletion.
+	def delete() {
+
+		Question question = getQuestion()
+		if ( !question ) {
+			redirect( action : 'list' )
 		}
+
+		return [
+			question : question
+		]
+	}
+
+	def deleteConfirmed() {
+
+		Question question = getQuestion()
+		if ( !question ) {
+			redirect( action : 'list' )
+		}
+
+		String questionText = question.question
+		question.delete()
+		success( "Question \"$questionText\" deleted." )
 
 	}
 

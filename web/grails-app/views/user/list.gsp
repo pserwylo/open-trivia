@@ -1,53 +1,49 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title>Manage questions</title>
-
-	<g:javascript>
-		$(document).ready( function() {
-
-			var filterRole = $( '#filter-role' );
-			var tableBody  = $( '#list-user' ).find( 'tbody' );
-
-			filterRole.change( function() {
-				refreshList();
-			});
-
-			var refreshList = function() {
-				var params = {};
-
-				var roleId = filterRole.val();
-				if ( roleId != '0' ) {
-					params.roleId = roleId;
-				}
-
-				tableBody.load( '${createLink( action : 'ajaxList' )}', params );
-			};
-
-		});
-	</g:javascript>
-
+  <title>Manage users</title>
 	<r:require module="adminUserList" />
-
-	<meta name="layout" content="admin"></head>
+	<meta name="layout" content="admin">
+</head>
 <body>
 
 	<triv:notify />
 
 	<triv:filterBar>
-		<button
-			id="btn-add"
-			onclick="document.location='${createLink(action: 'edit')}'">
-			New user
-		</button>
-		<g:select
-			name="filter-role"
-			from="${roles}"
-			optionKey="id"
-			noSelection="${[ 0 : 'All Roles' ]}"/>
+		<g:form action="list" method="get">
+			<button
+				id="btn-add"
+				onclick="document.location='${createLink(action: 'edit')}'">
+				New user
+			</button>
+		</g:form>
 	</triv:filterBar>
 
-	<triv:userList/>
+	<table id='list-user' class='list'>
+		<thead>
+			<tr>
+				<g:sortableColumn property='username' class='username' title="Username" />
+				<th class='roles'>Roles</th>
+				<th class='actions'></th>
+			</tr>
+		</thead>
+		<tbody>
+			<g:each var="user" in="${users}">
+				<tr>
+					<td>${user.username}</td>
+					<td><triv:userRoles user="${user}" /></td>
+					<td class="actions">
+						<triv:actionButton id="${user.id}" action="edit" />
+						<triv:actionButton id="${user.id}" action="delete" />
+					</td>
+				</tr>
+			</g:each>
+		</tbody>
+	</table>
+
+	<div class="pages">
+		<g:paginate total="${count}" action="list" offset="${params?.offset}" max="5" />
+	</div>
 
 </body>
 </html>

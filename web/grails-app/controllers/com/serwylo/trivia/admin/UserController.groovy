@@ -12,7 +12,9 @@ class UserController extends CRUDController {
 
 	def list() {
 		return [
-			roles : userService.allRoles
+			roles : userService.allRoles,
+			users : User.list( params ),
+			count : User.count(),
 		]
 	}
 

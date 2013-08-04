@@ -56,6 +56,11 @@ modules = {
 		dependsOn( [ "adminList" ] )
 	}
 
+	adminDelete {
+		resource( url: "css/adminDelete.css" )
+		dependsOn( [ "admin", "widget" ] )
+	}
+
 	views {
 		dependsOn( [ "jquery" ] )
 	}

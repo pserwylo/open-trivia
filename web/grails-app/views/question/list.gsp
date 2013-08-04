@@ -35,6 +35,7 @@
 			method="get">
 			<button
 				id="btn-add"
+				type="button"
 				onclick="document.location='${createLink(action: 'edit')}'">
 				New question
 			</button>
