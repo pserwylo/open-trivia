@@ -18,7 +18,7 @@ modules = {
 	}
 
 	home {
-		resource( url: "css/home.css" )
+		resource( url: "css/publicHome.css" )
 		dependsOn( [ 'misc', 'widget' ] )
 	}
 

@@ -21,7 +21,11 @@
 		<div id="content">
 			<g:layoutBody/>
 		</div>
-		<div class="footer" role="contentinfo"></div>
+		<div class="footer" role="contentinfo">
+			<sec:ifAllGranted roles="ROLE_ADMIN">
+				<nav:primary scope="adminScope" />
+			</sec:ifAllGranted>
+		</div>
         <r:layoutResources />
 	</body>
 </html>
