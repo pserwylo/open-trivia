@@ -12,3 +12,15 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.hidden {
+    display: none;
+}
+
+.pop-out {
+    border: solid 1px #bbb;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 3px #ddd;
+    margin: 0.5em;
+    padding: 0.5em;
+}

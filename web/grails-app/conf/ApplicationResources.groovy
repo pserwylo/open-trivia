@@ -8,8 +8,7 @@ modules = {
 
 	login {
 		resource( url: "css/login.css" )
-		resource( url: "css/form.css" )
-		dependsOn( [ "widget" ] )
+		dependsOn( [ "widget", "form" ] )
 	}
 
 	publicPage {
@@ -31,9 +30,13 @@ modules = {
 		dependsOn( [ "misc" ] )
 	}
 
-	adminForm {
+	form {
 		resource( url: "css/form.css" )
-		dependsOn( [ "admin" ] )
+	}
+
+	adminForm {
+		resource( url: "css/adminForm.css" )
+		dependsOn( [ "admin", "form" ] )
 	}
 
 	adminQuestionForm {

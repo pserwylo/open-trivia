@@ -1,0 +1,25 @@
+.buttons {
+    margin-top: 0.8em;
+    clear: both;
+}
+
+#content {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+ul.output-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-details {
+    width: 45%;
+    float: left;
+}
+
+.other-details {
+    width: 45%;
+    float: right;
+}
