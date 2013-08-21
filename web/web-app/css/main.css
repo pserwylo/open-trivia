@@ -137,3 +137,17 @@ a.action.edit {
 a.action.delete {
     background-image: url( ../images/silk/delete.png );
 }
+
+.info {
+    font-size: 0.8em;
+    color: #555;
+}
+
+.createdModified {
+    font-size: 0.8em;
+    color: #666;
+}
+
+h1, h2, h3, h4, h5 {
+    clear: both;
+}

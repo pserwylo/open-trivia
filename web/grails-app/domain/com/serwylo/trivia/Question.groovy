@@ -21,4 +21,8 @@ class Question extends TriviaItem {
 	String answer
 	Subject subject
 
+	public List<QuestionSource> getSources() {
+		QuestionSource.findAllByQuestion( this )
+	}
+
 }

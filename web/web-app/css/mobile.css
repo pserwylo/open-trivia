@@ -75,6 +75,10 @@
 		width: auto;
 	}
 
+    .details {
+        width: 48%;
+    }
+
     /* ===== PANELS ===== */
 
     .panel.delete {

@@ -4,6 +4,16 @@
 	<title>Question details</title>
 	<r:require module="adminForm" />
 	<meta name="layout" content="admin"></head>
+
+	<g:javascript>
+		$(function() {
+			$( '#btn-add-source' ).click( function() {
+				$( this ).hide();
+				$( '.input.source' ).show( 'fast' );
+			})
+		});
+	</g:javascript>
+
 <body>
 
 	<g:if test="${question?.hasErrors()}">
@@ -18,43 +28,85 @@
 			<g:hiddenField name="id" value="${question.id}" />
 		</g:if>
 
-		<div class="input">
-			<label for="input-question">Question</label>
-			<g:textArea
-				id="input-question"
-				class="large ${hasErrors( bean : question, field : 'question', 'errors' )}"
-				name="question"
-				value="${fieldValue( bean : question, field : 'question' )}" />
+		<div class="question-details">
+
+			<h2>Question Details</h2>
+
+			<div class="input">
+				<label for="input-question">Question</label>
+				<g:textArea
+					id="input-question"
+					class="large ${hasErrors( bean : question, field : 'question', 'errors' )}"
+					name="question"
+					value="${fieldValue( bean : question, field : 'question' )}" />
+			</div>
+
+
+			<div class="input">
+				<label for="input-answer">Answer</label>
+				<g:textArea
+					id="input-answer"
+					class="small ${hasErrors( bean : question, field : 'answer', 'errors' )}"
+					name="answer"
+					value="${fieldValue( bean : question, field : 'answer' )}" />
+			</div>
+
+			<div class="input select">
+				<label for="input-subject">Subject</label>
+				<g:select
+					id="input-subject"
+					name="subject.id"
+					from="${subjectList}"
+					optionKey="id"
+					value="${question?.subject?.id}" />
+			</div>
+
+			<div class="input select">
+				<label for="input-difficulty">Difficulty</label>
+				<g:select
+					id="input-difficulty"
+					name="difficulty.id"
+					from="${difficultyList}"
+					optionKey="id"
+					value="${question?.difficulty?.id}"/>
+			</div>
+
 		</div>
 
+		<div class="question-other-info">
 
-		<div class="input">
-			<label for="input-answer">Answer</label>
-			<g:textArea
-				id="input-answer"
-				class="small ${hasErrors( bean : question, field : 'answer', 'errors' )}"
-				name="answer"
-				value="${fieldValue( bean : question, field : 'answer' )}" />
-		</div>
+			<h2>Source</h2>
 
-		<div class="input select">
-			<label for="input-subject">Subject</label>
-			<g:select
-				id="input-subject"
-				name="subject.id"
-				from="${subjectList}"
-				optionKey="id"
-				value="${question?.subject?.id}" />
-		</div>
+			<div class="details">
+				<triv:questionSources question="${question}" />
+			</div>
 
-		<div class="input select">
-			<label for="input-difficulty">Difficulty</label>
-			<g:select
-				id="input-difficulty"
-				name="difficulty.id"
-				from="${difficultyList}"
-				optionKey="id"
-				value="${question?.difficulty?.id}"/>
+			<div class="input buttons">
+				<button id="btn-add-source" type="button">Add source</button>
+			</div>
+
+			<div class="input source hidden">
+
+				<div class="input">
+					<label for="input-source">Source</label>
+					<g:textField
+						id="input-source"
+						name="source-location"
+						value="${sourceLocation}"/>
+					<div class="info">(for example "https://en.wikipedia.org/wiki/Australia" or "Oxford Dictionary")</div>
+				</div>
+
+				<div class="input">
+					<label for="input-source-commentText">Source details</label>
+					<g:textArea
+						id="input-source-commentText"
+						class="small"
+						name="source-commentText"
+						value="${sourceCommentText}" />
+				</div>
+
+			</div>
+
 		</div>
 
 		<div class="buttons">
