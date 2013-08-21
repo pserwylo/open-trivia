@@ -38,6 +38,7 @@
 					id="input-question"
 					class="large ${hasErrors( bean : question, field : 'question', 'errors' )}"
 					name="question"
+					escapeHtml="false"
 					value="${fieldValue( bean : question, field : 'question' )}" />
 			</div>
 
@@ -48,6 +49,7 @@
 					id="input-answer"
 					class="small ${hasErrors( bean : question, field : 'answer', 'errors' )}"
 					name="answer"
+					escapeHtml="false"
 					value="${fieldValue( bean : question, field : 'answer' )}" />
 			</div>
 
