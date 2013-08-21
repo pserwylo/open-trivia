@@ -75,8 +75,16 @@
 		width: auto;
 	}
 
-    .details {
-        width: 48%;
+    /* ----- FORM DETAIL PANELS ----- */
+
+    .main-details {
+        float: none;
+        width: 100%;
+    }
+
+    .other-details {
+        float: none;
+        width: 100%;
     }
 
     /* ===== PANELS ===== */

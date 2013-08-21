@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Question details</title>
-	<r:require module="adminForm" />
+	<r:require module="adminQuestionForm" />
 	<meta name="layout" content="admin"></head>
 
 	<g:javascript>
@@ -28,7 +28,7 @@
 			<g:hiddenField name="id" value="${question.id}" />
 		</g:if>
 
-		<div class="question-details">
+		<div class="main-details">
 
 			<h2>Question Details</h2>
 
@@ -73,7 +73,7 @@
 
 		</div>
 
-		<div class="question-other-info">
+		<div class="other-details">
 
 			<h2>Source</h2>
 

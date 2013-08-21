@@ -77,14 +77,12 @@ ul.output-items {
     padding: 0.5em;
 }
 
-.question-details {
+.main-details {
     width: 45%;
-    display: inline-block;
-    vertical-align: top;
+    float: left;
 }
 
-.question-other-info {
+.other-details {
     width: 45%;
-    display: inline-block;
-    vertical-align: top;
+    float: right;
 }
