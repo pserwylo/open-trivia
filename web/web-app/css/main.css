@@ -52,32 +52,25 @@ ul.nav.primary.extra {
 
 ul.nav.primary li {
     display: inline-block;
-}
-
-ul.nav.primary li {
-    width: 150px;
     border-right: solid 1px #ddd;
 }
 
 ul.nav.primary.extra li {
-    width: 80px;
     border-left: solid 1px #ddd;
     border-right: none;
-    font-size: 0.8em;
 }
 
 ul.nav.primary.extra {
     float: right;
-    margin-top: 0.2em;
+    margin-top: 1px;
 }
 
 ul.nav.primary li a {
-    width: 100%;
     height: 100%;
     text-decoration: none;
     display: block;
-    padding: 0.5em 0;
-    text-align: center;
+    padding: 0.5em 10px 0.5em 42px;
+    text-align: left;
     color: #333;
 }
 
@@ -108,6 +101,36 @@ ul.nav.primary li a:hover,
     text-decoration: none;
 }
 
+ul.nav.primary.extra .profile a {
+    background-image: url( ../images/icons8/26px/edit_user-26.png );
+    background-repeat: no-repeat;
+    background-position: 8px 6px;
+}
+
+ul.nav.primary.extra .logout a {
+    background-image: url( ../images/icons8/26px/running-26.png );
+    background-repeat: no-repeat;
+    background-position: 8px 6px;
+}
+
+ul.nav.primary:not( .extra ) li:first-child a {
+    background-image: url( ../images/icons8/26px/graduation_cap-26.png );
+    background-repeat: no-repeat;
+    background-position: 8px 6px;
+}
+
+ul.nav.primary:not( .extra ) li:nth-child( 2 ) a {
+    background-image: url( ../images/icons8/26px/book_stack-26.png );
+    background-repeat: no-repeat;
+    background-position: 8px 6px;
+}
+
+ul.nav.primary:not( .extra ) li:nth-child( 3 ) a {
+    background-image: url( ../images/icons8/26px/user-26.png );
+    background-repeat: no-repeat;
+    background-position: 8px 6px;
+}
+
 .errors ul, .messages ul {
     list-style: none;
     margin: 0.5em;
@@ -135,11 +158,11 @@ a.action {
 }
 
 a.action.edit {
-    background-image: url( ../images/silk/pencil.png );
+    background-image: url( ../images/icons8/16px/edit.png );
 }
 
 a.action.delete {
-    background-image: url( ../images/silk/delete.png );
+    background-image: url( ../images/icons8/16px/delete.png );
 }
 
 .info {

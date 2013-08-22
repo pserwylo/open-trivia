@@ -22,38 +22,36 @@
 
     /* ===== NAVIGATION ===== */
 
-    ul.nav.primary li {
-        width: auto;
-    }
-
-    ul.nav.primary li a {
-		margin: 0;
-		padding: 0.5em 0.75em;
-        width: auto;
-    }
-
     ul.nav.primary .profile {
         display: none;
     }
 
-    ul.nav.primary .logout a:hover {
+    ul.nav.primary a:hover {
         border: none;
     }
 
-    ul.nav.primary.extra .logout {
-        width: auto;
+    ul.nav.primary a {
+        padding: 0;
     }
 
-    ul.nav.primary.extra .logout a {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background: url( ../images/silk/door_out.png ) no-repeat center center;
+    ul.nav.primary li a {
+        background-position: center 12px !important;
+    }
+
+    ul.nav.primary li {
+        width: 50px;
+        height: 50px;
+        padding: 0;
 
         /* Hide the text (http://stackoverflow.com/a/471538) */
         text-indent: 100%;
         white-space: nowrap;
         overflow: hidden;
+    }
+
+    ul.nav.primary.extra li {
+        width: 50px;
+        height: 48px;
     }
 
     /* ===== FORMS ===== */
@@ -139,7 +137,7 @@
 	}
 
     table.list th.actions {
-        width: 70px;
+        width: 80px;
     }
 
     table.list tr:hover {
@@ -172,6 +170,11 @@
     a.action:hover {
         background-color: transparent;
         text-decoration: none;
+    }
+
+    a.action {
+        margin-left: 0.5em;
+        margin-right: 0.5em;
     }
 
 }
