@@ -13,6 +13,7 @@ modules = {
 
 	publicPage {
 		resource( url: "css/public.css" )
+		resource( url: "css/mobile.css" )
 		dependsOn( [ 'misc' ] )
 	}
 

@@ -22,7 +22,7 @@
 			</div>
 		</g:if>
 
-		<form action='${postUrl}' method='POST'>
+		<form name="loginForm" action='${postUrl}' method='POST'>
 			<div class="input">
 				<label for='username'>
 					<g:message code="springSecurity.login.username.label"/>
