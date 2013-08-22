@@ -13,7 +13,7 @@
 		<g:form action="list" method="get">
 			<button
 				id="btn-add"
-				class="big" 
+				class="big"
 				onclick="document.location='${createLink(action: 'edit')}'">
 				New user
 			</button>

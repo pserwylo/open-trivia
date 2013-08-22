@@ -1,3 +1,9 @@
 th.questions {
     width: 100%;
 }
+
+.answer {
+    margin-top: 0.3em;
+    font-size: 0.8em;
+    color: #666;
+}

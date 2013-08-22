@@ -5,20 +5,10 @@
 
 	<g:javascript>
 		$(document).ready( function() {
-
-			$( 'tr' ).click(function() {
-				if ( $( this ).hasClass( 'full' ) ) {
-					$( this ).removeClass( 'full' );
-				} else {
-					$( this ).addClass( 'full' );
-				}
-			});
-
 			var filterBar = $( '.filter-bar' );
 			filterBar.find( "select" ).change( function() {
 				filterBar.find( "form" ).submit();
 			});
-
 		});
 	</g:javascript>
 
@@ -63,9 +53,6 @@
 					property="question"
 					title="Question"/>
 				<g:sortableColumn
-					property="answer"
-					title="Answer" />
-				<g:sortableColumn
 					property="subject"
 					title="Subject" />
 				<th class='actions'></th>
@@ -74,8 +61,14 @@
 		<tbody>
 			<g:each in="${questions}" var="question">
 				<tr>
-					<td><triv:truncate string="${question.question}" length="60" /></td>
-					<td><triv:truncate string="${question.answer}"   length="20" /></td>
+					<td>
+						<div class="question">
+							<triv:truncate string="${question.question}" length="100" />
+						</div>
+						<div class="answer">
+							<triv:truncate string="${question.answer}"   length="150" />
+						</div>
+					</td>
 					<td>${question.subject.name}</td>
 					<td class="actions">
 						<triv:actionButton action="edit"   id="${question.id}" />
