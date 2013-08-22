@@ -44,7 +44,7 @@
 				</label>
 			</div>
 
-			<g:submitButton name='${message(code: "springSecurity.login.button")}'/>
+			<g:submitButton class="big" name='${message(code: "springSecurity.login.button")}'/>
 		</form>
 	</triv:panel>
 </body>

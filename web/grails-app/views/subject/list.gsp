@@ -11,7 +11,9 @@
 	<triv:notify />
 
 	<triv:filterBar>
-		<button onclick="document.location = '${createLink( action : 'edit' )}'">
+		<button
+			class="big"
+			onclick="document.location = '${createLink( action : 'edit' )}'">
 			New subject
 		</button>
 	</triv:filterBar>

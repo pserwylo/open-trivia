@@ -50,10 +50,12 @@
 
 		<div class="buttons">
 			<g:submitButton
-				name="Save" />
+				name="Save"
+				class="big" />
 			<button
 				onclick="document.location='${createLink(action: 'list')}'"
-				type="button">
+				type="button"
+				class="big">
 				Cancel
 			</button>
 		</div>

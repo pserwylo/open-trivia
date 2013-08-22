@@ -36,7 +36,8 @@
 			<button
 				id="btn-add"
 				type="button"
-				onclick="document.location='${createLink(action: 'edit')}'">
+				onclick="document.location='${createLink(action: 'edit')}'"
+				class="big" >
 				New question
 			</button>
 			<g:select

@@ -79,6 +79,14 @@ ul.nav.primary li.active a {
     background-color: #666;
 }
 
+/* Buttons */
+
+button.big,
+input[type=submit].big {
+    font-size: 1em;
+    padding: 0.3em 1em;
+}
+
 /* Button-ish things */
 
 .pages .step,
