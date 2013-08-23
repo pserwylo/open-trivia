@@ -34,7 +34,7 @@ class QuestionService extends CRUDService {
 		def criteria = {
 
 			if ( subjectId > 0 ) {
-				subject {
+				subjects {
 					eq ( 'id', subjectId )
 				}
 			}

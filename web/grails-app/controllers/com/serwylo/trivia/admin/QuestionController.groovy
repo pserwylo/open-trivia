@@ -121,7 +121,20 @@ class QuestionController extends CRUDController {
 			sourceCommentText = params[ "source-commentText" ]?.trim()
 		}
 
+		List<Subject> subjects = []
+		if ( params.containsKey( "subject-ids" ) ) {
+			List<Long> subjectIds = []
+			params.getList( "subject-ids" )?.each { String value ->
+				try {
+					long subjectId = Integer.parseInt( value )
+					subjectIds.add( subjectId )
+				} catch ( NumberFormatException e ) {}
+			}
+			subjects = Subject.findAllByIdInList( subjectIds )
+		}
+
 		question?.modifiedBy = userService.current
+		question?.subjects   = subjects
 		if ( question?.validate() ) {
 			question.save()
 			if ( sourceLocation?.size() > 0 ) {

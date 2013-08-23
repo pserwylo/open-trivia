@@ -1,3 +1,11 @@
 .source .location a {
     font-size: 0.8em;
 }
+
+.input.select {
+    width: 100%;
+}
+
+select#input-subject {
+    width: 100%;
+}

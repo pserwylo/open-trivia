@@ -25,7 +25,16 @@ class Subject {
 	}
 
 	int getNumQuestions() {
-		Question.countBySubject( this )
+		def count = Question.withCriteria {
+			projections {
+				count( 'id' )
+			}
+			subjects {
+				eq( 'id', id )
+			}
+		}
+
+		count.size() > 0 ? count[ 0 ] : 0
 	}
 
 }

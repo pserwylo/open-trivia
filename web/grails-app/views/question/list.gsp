@@ -30,19 +30,24 @@
 				class="big" >
 				New question
 			</button>
+
 			<g:select
+				id="subject-filter"
 				name="subject.id"
 				from="${subjects}"
 				optionKey="id"
 				value="${params['subject.id']}"
-				noSelection="${[ 'null' : 'All Subjects' ]}"/>
+				noSelection="${['0':'All subjects']}"/>
+
 			<g:select
+				id="difficulty-filter"
 				class='hide-on-mobile'
 				name="difficulty.id"
 				from="${difficulties}"
 				optionKey="id"
 				value="${params['difficulty.id']}"
-				noSelection="${[ 'null' : 'All Difficulties' ]}" />
+				noSelection="${['0':'All difficulties']}"/>
+
 		</g:form>
 	</triv:filterBar>
 
@@ -66,10 +71,10 @@
 							<triv:truncate string="${question.question}" length="80" />
 						</div>
 						<div class="answer">
-							<triv:truncate string="${question.answer}"   length="120" />
+							<triv:truncate string="${question.answer}"   length="100" />
 						</div>
 					</td>
-					<td>${question.subject.name}</td>
+					<td>${question.subjects*.name.join( ", " )}</td>
 					<td class="actions">
 						<triv:actionButton action="edit"   id="${question.id}" />
 						<triv:actionButton action="delete" id="${question.id}" />

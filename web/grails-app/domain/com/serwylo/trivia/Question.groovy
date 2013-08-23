@@ -10,6 +10,7 @@ class Question extends TriviaItem {
     static constraints = {
 		question( blank : false, nullable : false )
 		answer  ( blank : false, nullable : false )
+		subjects( minSize : 1 )
     }
 
 	static mapping = {
@@ -17,9 +18,10 @@ class Question extends TriviaItem {
 		answer( type: "text" )
 	}
 
+	static hasMany = [ subjects : Subject ]
+
 	String question
 	String answer
-	Subject subject
 
 	public List<QuestionSource> getSources() {
 		QuestionSource.findAllByQuestion( this )

@@ -36,10 +36,6 @@ label {
     display: block;
 }
 
-.input.select {
-    float: left;
-}
-
 .input {
     margin: 0.3em 0;
 }

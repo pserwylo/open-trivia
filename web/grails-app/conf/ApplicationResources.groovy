@@ -1,9 +1,15 @@
 modules = {
 
+	libChosen {
+		resource( url: "js/lib/chosen/chosen.jquery.min.js" )
+		resource( url: "js/lib/chosen/chosen.min.css" )
+		resource( url: "js/lib/chosen/choose.all.js" )
+	}
+
 	misc {
 		resource( url: "css/misc.css" )
 		resource( url: "css/main.css" )
-		dependsOn( [ "jquery" ] )
+		dependsOn( [ "jquery", "libChosen" ] )
 	}
 
 	login {

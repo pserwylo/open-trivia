@@ -55,22 +55,35 @@
 
 			<div class="input select">
 				<label for="input-subject">Subject</label>
+
 				<g:select
 					id="input-subject"
-					name="subject.id"
+					name="subject-ids"
 					from="${subjectList}"
 					optionKey="id"
-					value="${question?.subject?.id}" />
+					multiple="true"
+					data-placeholder="Enter subjects"
+					value="${question?.subjects ? question?.subjects*.id : []}"
+					noSelection="${['0':'']}"/>
+
 			</div>
 
 			<div class="input select">
 				<label for="input-difficulty">Difficulty</label>
+
 				<g:select
 					id="input-difficulty"
 					name="difficulty.id"
 					from="${difficultyList}"
 					optionKey="id"
 					value="${question?.difficulty?.id}"/>
+
+				<g:javascript>
+					$( '#input-difficulty' ).chosen({
+						disable_search : true
+					});
+				</g:javascript>
+
 			</div>
 
 			<div style="clear: both;"></div>
