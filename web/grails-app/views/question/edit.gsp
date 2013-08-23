@@ -73,6 +73,8 @@
 					value="${question?.difficulty?.id}"/>
 			</div>
 
+			<div style="clear: both;"></div>
+
 		</div>
 
 		<div class="other-details">

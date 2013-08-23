@@ -25,7 +25,7 @@ class QuestionTagLib {
 			out << "<ul class='sources output-items'>"
 			question.sources.each { QuestionSource source ->
 				String comment = source.comment?.commentText ?: ""
-				String location = source.isUrl() ? "<a href='$source.location'>$source.location</a>" : source.location
+				String location = source.isUrl() ? "<a href='$source.location'>$source.source.name</a>" : source.location
 				out << """
 					<li class='source output-item pop-out'>
 						<div class='location'>$location</div>

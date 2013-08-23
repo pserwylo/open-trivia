@@ -137,7 +137,11 @@
 	}
 
     table.list th.actions {
-        width: 80px;
+        width: 90px;
+    }
+
+    table.list td.actions {
+        padding: 2px;
     }
 
     table.list tr:hover {
@@ -154,12 +158,12 @@
     /* Action buttons are only icons */
     a.action {
         display: inline-block;
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         padding: 0;
-        background-position: 50% 50%;
+        background-position: center center;
         background-color: transparent;
-        border: none;
+        margin: 0.6em 0 0.6em 0.3em;
 
         /* Hide the text (http://stackoverflow.com/a/471538) */
         text-indent: 100%;
@@ -170,11 +174,6 @@
     a.action:hover {
         background-color: transparent;
         text-decoration: none;
-    }
-
-    a.action {
-        margin-left: 0.5em;
-        margin-right: 0.5em;
     }
 
 }
