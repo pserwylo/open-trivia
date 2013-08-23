@@ -63,10 +63,10 @@
 				<tr>
 					<td>
 						<div class="question">
-							<triv:truncate string="${question.question}" length="100" />
+							<triv:truncate string="${question.question}" length="80" />
 						</div>
 						<div class="answer">
-							<triv:truncate string="${question.answer}"   length="150" />
+							<triv:truncate string="${question.answer}"   length="120" />
 						</div>
 					</td>
 					<td>${question.subject.name}</td>

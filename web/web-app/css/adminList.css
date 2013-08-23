@@ -5,10 +5,12 @@
 table.list {
     width: 100%;
     border-collapse: collapse;
+    border: solid 1px #ccc;
+    box-shadow: #ccc 0 0 2px;
 }
 
 table.list th.actions {
-    width: 150px;
+    width: 160px;
 }
 
 table.list td.actions {
@@ -17,26 +19,20 @@ table.list td.actions {
 
 table.list th {
     text-align: left;
-    background-color: #ddd;
+    background: #eee;
+}
+
+table.list th a {
+    display: block;
     padding: 0.3em 0.5em;
-}
-
-table.list th:first-child {
-    border-top-left-radius: 0.5em;
-}
-
-table.list th:last-child {
-    border-top-right-radius: 0.5em;
+    color: #222;
 }
 
 table.list td {
     padding: 0.3em 0.5em;
-    border: solid 1px #ccc;
+    border-top: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
     font-size: 0.8em;
-}
-
-table.list tr:hover {
-    background-color: #eee;
 }
 
 .continuation { display: inline; }

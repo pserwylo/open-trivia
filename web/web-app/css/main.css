@@ -163,6 +163,7 @@ a.action {
     background: no-repeat 5px 50%;
     padding: 0.2em 5px 0.2em 25px;
     margin: 0 0.2em;
+    box-shadow: #ccc 0 0 2px;
 }
 
 a.action.edit {

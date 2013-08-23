@@ -105,12 +105,10 @@ class MiscTagLib {
 		int length    = attrs.length as Integer
 
 		if ( string.length() > length ) {
-			String start = string.substring(0, length - 3)
-			String end   = string.substring(length - 3)
-			out << "$start<span class='continuation'>...</span><span class='remainder'>$end</span>"
-		} else {
-			out << string
+			string = string.substring(0, length - 3) + "..."
 		}
+
+		out << string.encodeAsHTML()
 	}
 
 }
