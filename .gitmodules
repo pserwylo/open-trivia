@@ -1,0 +1,3 @@
+[submodule "web/web-app/js/lib/chosen"]
+	path = web/web-app/js/lib/chosen
+	url = https://github.com/harvesthq/chosen.git
