@@ -29,7 +29,7 @@
 
 		<div class="input">
 			<label for="input-password">Password</label>
-			<g:textField
+			<g:passwordField
 				id="input-password"
 				class="small ${hasErrors( bean : user, field : 'password', 'errors' )}"
 				name="password" />
