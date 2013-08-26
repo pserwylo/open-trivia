@@ -4,7 +4,7 @@ abstract class CRUDService {
 
 	public static Map<String, Object> getListParams( def params ) {
 		def listParams = [
-			max    : 5,
+			max    : 10,
 			offset : 0,
 			sort   : null,
 			order  : null,
