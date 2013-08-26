@@ -49,7 +49,7 @@
 	</table>
 
 	<div class="pages">
-		<g:paginate total="${count}" action="list" offset="${params?.offset}" max="5" />
+		<g:paginate total="${count}" action="list" offset="${params?.offset}" max="10" />
 	</div>
 
 </body>
