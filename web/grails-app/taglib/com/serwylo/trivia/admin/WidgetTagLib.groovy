@@ -5,8 +5,9 @@ class WidgetTagLib {
 	static namespace = "triv"
 
 	private static final Map<String, String> ACTIONS = [
-			"edit"   : "Edit",
-			"delete" : "Delete",
+			"importData" : "Import",
+			"edit"       : "Edit",
+			"delete"     : "Delete",
 	]
 
 	def filterBar = { attrs, body ->

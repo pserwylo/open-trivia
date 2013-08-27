@@ -166,6 +166,10 @@ a.action {
     box-shadow: #ccc 0 0 2px;
 }
 
+a.action.importData {
+    background-image: url( ../images/icons8/16px/wipes.png );
+}
+
 a.action.edit {
     background-image: url( ../images/icons8/16px/edit.png );
 }

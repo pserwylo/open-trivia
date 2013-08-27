@@ -15,6 +15,7 @@ table.list th.actions {
 
 table.list td.actions {
     padding: 0.8em;
+    text-align: right;
 }
 
 table.list th {

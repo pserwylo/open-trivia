@@ -108,15 +108,16 @@ grails.plugins.springsecurity.password.bcrypt.logrounds         = 15
 grails.plugins.springsecurity.securityConfigType                = 'InterceptUrlMap'
 
 grails.plugins.springsecurity.interceptUrlMap = [
-	'/adminDash/**' : [ 'ROLE_ADMIN' ],
-	'/question/**'  : [ 'ROLE_ADMIN' ],
-	'/subject/**'   : [ 'ROLE_ADMIN' ],
-	'/user/**'      : [ 'ROLE_ADMIN' ],
-	'/page/**'      : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
-	'/js/**'        : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
-	'/css/**'       : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
-	'/images/**'    : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
-	'/login/**'     : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
-	'/logout/**'    : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
-	'/*'            : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/adminDash/**'        : [ 'ROLE_ADMIN' ],
+	'/questionTemplate/**' : [ 'ROLE_ADMIN' ],
+	'/question/**'         : [ 'ROLE_ADMIN' ],
+	'/subject/**'          : [ 'ROLE_ADMIN' ],
+	'/user/**'             : [ 'ROLE_ADMIN' ],
+	'/page/**'             : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/js/**'               : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/css/**'              : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/images/**'           : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/login/**'            : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/logout/**'           : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
+	'/*'                   : [ 'IS_AUTHENTICATED_ANONYMOUSLY' ],
 ]
