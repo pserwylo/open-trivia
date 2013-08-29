@@ -13,18 +13,22 @@
 			${template.name}
 		</div>
 		<div class='info'>
-			<span class='label'>Template</span>
-			${template.template}
+			<span class='label'>Question Template</span>
+			${template.questionTemplate}
+		</div>
+		<div class='info'>
+			<span class='label'>Answer Template</span>
+			${template.answerTemplate}
 		</div>
 		<div class='buttons'>
 			<button
-				class='cancel'
+				class='cancel big'
 				type='button'
 				onclick='document.location = "${createLink( action : 'list' )}"'>
 				Cancel
 			</button>
 			<button
-				class='delete'
+				class='delete big'
 				type='button'
 				onclick='document.location = "${createLink( action : 'deleteConfirmed', params : [ id : template.id ] )}"'>
 				Delete

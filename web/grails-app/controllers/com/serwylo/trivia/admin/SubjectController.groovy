@@ -30,6 +30,10 @@ class SubjectController extends CRUDController {
 			}
 		}
 
+		if ( !subject.canEdit() ) {
+			error( "Cannot edit subject $subject.name." )
+		}
+
 		return [
 			subject        : subject,
 			parentSubjects : subjectService.allExcept( subject )
@@ -46,6 +50,9 @@ class SubjectController extends CRUDController {
 			if ( subject == null ) {
 				errors.reject( "Could not find subject $id" )
 			} else {
+				if ( !subject.canEdit() ) {
+					redirect( action : 'list' )
+				}
 				subject.properties = params
 			}
 		} else {
@@ -68,6 +75,8 @@ class SubjectController extends CRUDController {
 			subject = Subject.get( id )
 			if ( subject == null ) {
 				error( "Could not find subject $id." )
+			} else if ( !subject.canEdit() ) {
+				error( "Cannot delete subject $subject.name." )
 			} else {
 				String subjectName = subject.name
 				subject.delete()

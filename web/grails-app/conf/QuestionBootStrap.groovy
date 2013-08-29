@@ -1,6 +1,10 @@
 import com.serwylo.trivia.Difficulty
 import com.serwylo.trivia.Question
 import com.serwylo.trivia.Subject
+import com.serwylo.trivia.auth.Role
+import com.serwylo.trivia.auth.User
+import com.serwylo.trivia.auth.UserRole
+import com.serwylo.trivia.questions.Template
 import com.serwylo.trivia.web.DifficultyService
 import grails.util.Environment
 
@@ -10,8 +14,27 @@ class QuestionBootStrap {
 
     def init = { servletContext ->
 
-		initDifficulties();
+		initDifficulties()
 		initDefaultSubjects()
+		initTemplates()
+
+	}
+
+	void initTemplates() {
+
+		if ( Template.count() == 0 ) {
+
+			User user = UserRole.findByRole( Role.findByAuthority( Role.ADMIN ) )?.user
+
+			new Template(
+				name             : Template.NAME_BASIC_IMPORT,
+				questionTemplate : "[question]",
+				answerTemplate   : "[answer]",
+				createdBy        : user,
+				modifiedBy       : user
+			).save( flush: true, failOnError: true )
+
+		}
 
 	}
 
@@ -19,9 +42,16 @@ class QuestionBootStrap {
 
 		if ( Difficulty.count() == 0 ) {
 
-			new Difficulty( label: "Easy", value:  Difficulty.DIFF_EASY ).save( flush: true, failOnError: true )
-			new Difficulty( label: "Medium", value:  Difficulty.DIFF_MEDIUM ).save( flush: true, failOnError: true )
-			new Difficulty( label: "Hard", value:  Difficulty.DIFF_HARD ).save( flush: true, failOnError: true )
+			new Difficulty( label : "Unknown", value : Difficulty.DIFF_UNKNOWN ).save( flush: true, failOnError: true )
+			new Difficulty( label : "Easy",    value : Difficulty.DIFF_EASY    ).save( flush: true, failOnError: true )
+			new Difficulty( label : "Medium",  value : Difficulty.DIFF_MEDIUM  ).save( flush: true, failOnError: true )
+			new Difficulty( label : "Hard",    value : Difficulty.DIFF_HARD    ).save( flush: true, failOnError: true )
+
+		} else {
+
+			if ( Difficulty.unknown == null ) {
+				new Difficulty( label : "Unknown", value : Difficulty.DIFF_UNKNOWN ).save( flush: true, failOnError: true )
+			}
 
 		}
 
@@ -35,6 +65,11 @@ class QuestionBootStrap {
 	void initDefaultSubjects() {
 
 		if ( Subject.count() == 0 ) {
+
+			Subject unknown = new Subject(
+				name: Subject.NAME_UNKNOWN,
+				description: ""
+			).save( flush: true, failOnError: true )
 
 			Subject geography = new Subject(
 				name: "Geography",
@@ -64,9 +99,27 @@ class QuestionBootStrap {
 				parent: entertainment
 			).save( flush: true, failOnError: true )
 
+			Subject science = new Subject(
+				name: "Science",
+				description: ""
+			).save( flush: true, failOnError: true )
+
+			Subject history = new Subject(
+				name: "History",
+				description: ""
+			).save( flush: true, failOnError: true )
 
 			entertainment.children = [ music, tv, movies ]
 			entertainment.save( flush: true, failOnError: true )
+
+		} else {
+
+			if ( Subject.unknown == null ) {
+				Subject unknown = new Subject(
+					name: Subject.NAME_UNKNOWN,
+					description: ""
+				).save( flush: true, failOnError: true )
+			}
 
 		}
 

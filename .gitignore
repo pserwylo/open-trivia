@@ -1,3 +1,7 @@
 # IntelliJ Module files
 *.iml
 .idea
+
+# Dev databases
+*.sql.gz
+*.sql

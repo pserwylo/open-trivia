@@ -10,7 +10,17 @@
 			$( '#btn-add-source' ).click( function() {
 				$( this ).hide();
 				$( '.input.source' ).show( 'fast' );
-			})
+			});
+
+			/* TODO: Deselect 'Unknown' if we select another value.
+			$( 'select[name=subject-ids]' ).on( 'change', function( event, params ) {
+				var UNKNOWN_ID = '${com.serwylo.trivia.Subject.unknown.id}';
+				var value = $( this ).val();
+				if ( value != null && value.length > 0 && value.indexOf( UNKNOWN_ID ) != -1 ) {
+					$( this ).find( 'option[value=' + UNKNOWN_ID + ']' ).prop( 'selected', false );
+				}
+			});
+			*/
 		});
 	</g:javascript>
 

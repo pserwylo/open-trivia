@@ -44,7 +44,7 @@ grails.project.dependency.resolution = {
 		compile ":platform-core:1.0.RC5"
 		compile ":spring-security-core:1.2.7.3"
 		compile ":spring-security-ui:0.2"
-		compile ":famfamfam:1.0.1"
+		compile ":csv:0.3.1"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"

@@ -39,8 +39,10 @@
 					</td>
 					<td class="actions">
 						<triv:actionButton action="importData" id="${template.id}" />
-						<triv:actionButton action="edit"       id="${template.id}" />
-						<triv:actionButton action="delete"     id="${template.id}" />
+						<g:if test="${template.canEdit()}">
+							<triv:actionButton action="edit"   id="${template.id}" />
+							<triv:actionButton action="delete" id="${template.id}" />
+						</g:if>
 					</td>
 				</tr>
 			</g:each>

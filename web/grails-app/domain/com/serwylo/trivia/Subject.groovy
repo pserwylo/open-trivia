@@ -6,6 +6,8 @@ package com.serwylo.trivia
  */
 class Subject {
 
+	public static final String NAME_UNKNOWN = "Unknown"
+
 	static constraints = {
 		name( nullable: false, blank: false, unique: true )
 		parent( nullable: true )
@@ -24,6 +26,10 @@ class Subject {
 		return name
 	}
 
+	boolean canEdit() {
+		name != NAME_UNKNOWN
+	}
+
 	int getNumQuestions() {
 		def count = Question.withCriteria {
 			projections {
@@ -35,6 +41,10 @@ class Subject {
 		}
 
 		count.size() > 0 ? count[ 0 ] : 0
+	}
+
+	public static Subject getUnknown() {
+		findByName( NAME_UNKNOWN )
 	}
 
 }

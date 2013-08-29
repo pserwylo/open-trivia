@@ -2,7 +2,7 @@ package com.serwylo.trivia.web
 
 import com.serwylo.trivia.Subject
 
-class SubjectService {
+class SubjectService extends CRUDService {
 
 	int count( def params ) {
 
@@ -10,7 +10,7 @@ class SubjectService {
 	}
 
     List<Subject> list( def params = [:] ) {
-		Subject.list( params )
+		Subject.list( getListParams( params ) )
 	}
 
 	List<Subject> allExcept( Subject subject = null ) {

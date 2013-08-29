@@ -37,6 +37,11 @@ modules = {
 		dependsOn( [ "misc" ] )
 	}
 
+	adminImport {
+		resource( url: "css/adminImport.css" )
+		dependsOn( [ "adminForm" ] )
+	}
+
 	form {
 		resource( url: "css/form.css" )
 	}

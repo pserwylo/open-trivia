@@ -24,7 +24,38 @@ class QuestionTemplateController extends CRUDController {
 	}
 
 	def importData() {
+
+		Template template = getTemplate()
+		if ( template == null ) {
+			error( "Template $idParam not found." )
+		}
+
 		[ template : template ]
+	}
+
+	def performImport() {
+
+		Template template = getTemplate()
+		if ( template == null ) {
+			error( "Template $idParam not found." )
+			return
+		}
+
+		String text = ""
+		if ( params.containsKey( 'text' ) ) {
+			text = params.text?.trim()
+		}
+
+		if ( params.containsKey( 'file' ) ) {
+
+		}
+
+		if ( text?.length() > 0 ) {
+			questionTemplateService.importQuestions( template, text )
+		} else {
+			// questionTemplateService.importQuestions( template, reader )
+		}
+
 	}
 
 	def edit() {
@@ -33,13 +64,14 @@ class QuestionTemplateController extends CRUDController {
 		Template template = null
 		if ( flash.template ) {
 			template = flash.template
-		} else if ( id ) {
-			if ( id > 0 ) {
-				template = Template.get( id )
-				if ( template == null ) {
-					error( "Template $id not found." )
-				}
+		} else if ( id > 0 ) {
+			template = getTemplate()
+			if ( template == null ) {
+				error( "Template $id not found." )
+			} else if ( !template.canEdit() ) {
+				error( "Cannot edit template $template.name" )
 			}
+
 		}
 
 		return [
@@ -66,6 +98,8 @@ class QuestionTemplateController extends CRUDController {
 		Template template = getTemplate()
 		if ( !template ) {
 			redirect( action : 'list' )
+		} else if ( !template.canEdit() ) {
+			error( "Cannot delete template $template.name" )
 		}
 
 		return [
@@ -78,6 +112,8 @@ class QuestionTemplateController extends CRUDController {
 		Template template = getTemplate()
 		if ( !template ) {
 			redirect( action : 'list' )
+		} else if ( !template.canEdit() ) {
+			error( "Cannot delete template $template.name" )
 		}
 
 		String templateName = template.name
@@ -94,6 +130,8 @@ class QuestionTemplateController extends CRUDController {
 			template = Template.get( id )
 			if ( template == null ) {
 				errors.reject( "Could not find template $id" )
+			} else if ( !template.canEdit() ) {
+				redirect( action : 'list' )
 			} else {
 				template.properties = params
 			}

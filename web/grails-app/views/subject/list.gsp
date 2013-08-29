@@ -40,8 +40,10 @@
 						</g:link>
 					</td>
 					<td class="actions">
-						<triv:actionButton action="edit"   id="${subject.id}" />
-						<triv:actionButton action="delete" id="${subject.id}" />
+						<g:if test="${subject.canEdit()}">
+							<triv:actionButton action="edit"   id="${subject.id}" />
+							<triv:actionButton action="delete" id="${subject.id}" />
+						</g:if>
 					</td>
 				</tr>
 			</g:each>
